@@ -1,0 +1,116 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Multi-boot — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Multiple firmware on one device</h1>
+<p>You flash a launcher once. The launcher owns the bootloader path, so a normal reset always returns to it. Each app is written into its own flash slot. The SD card holds the <code>.bin</code> you install from, plus whatever that app wants (captures, FAPs, IR files).</p>
+<pre><code class="language-text">power on
+  → custom bootloader
+    → launcher UI
+      → you pick slot 2
+        → Bruce runs
+          → you reboot
+            → launcher UI again
+</code></pre>
+<p>You cannot get “stuck” in Bruce unless the bootloader itself was overwritten. A power-cycle is the way home.</p>
+<h2>Choose a launcher</h2>
+<h3>bmorcelli Launcher</h3>
+<ul>
+<li>Site: <a href="https://bmorcelli.github.io/Launcher/">bmorcelli.github.io/Launcher</a></li>
+<li>Repo: <a href="https://github.com/bmorcelli/Launcher">bmorcelli/Launcher</a></li>
+<li>Pick <strong>LilyGO T-Embed CC1101</strong> in the flasher. Plus uses that same device entry unless the page has grown a Plus row — read the device list on the day you flash.</li>
+<li>Why this one: online catalog, install straight from Wi-Fi, <code>OTA → Check for Updates</code>, WebUI, USB disk mode. Already the usual answer on the LilyGO sub.</li>
+<li>Version line as of September 2026 was 2.9.x. Flash current, not a random fork build.</li>
+</ul>
+<h3>loznoc dual-boot</h3>
+<ul>
+<li>Site: <a href="https://loznoc.github.io/dualboot/">loznoc.github.io/dualboot</a></li>
+<li>Repo: <a href="https://github.com/loznoc/dualboot">loznoc/dualboot</a></li>
+<li>Why this one: built for this screen (320×170), three named slots with icons, themes, boot animation, PIN, Wi-Fi portal with a screen mirror. Bruce and the Flipper port are not inside the launcher image — you add them after.</li>
+<li>Pre-1.1 builds shipped a partition table with no LittleFS area, so Bruce looked like it forgot settings. Current builds fixed that. If you already flashed an old one, see <a href="05-updates.html">updates</a>.</li>
+</ul>
+<p>Flashing either launcher erases the app area. Copy anything you care about off the device first. The SD card is not erased by a flash.</p>
+<h2>Install the launcher</h2>
+<ol>
+<li>FAT32 card inserted.</li>
+<li>Desktop Chrome or Edge, data cable, board on.</li>
+<li>Open the launcher web flasher. Click Install. Pick the port.</li>
+<li>Wait until it reboots into the launcher. First boot can sit on a logo for a few seconds while it mounts the card.</li>
+</ol>
+<p>Manual loznoc path (the published image is a full image, so offset <code>0x0</code>):</p>
+<pre><code class="language-bash">esptool --chip esp32s3 --port /dev/ttyACM0 write-flash 0x0 launcher.bin
+</code></pre>
+<p>That full image also resets launcher settings (PIN, theme, slot names), because it rewrites the NVS gap. The web updater writes the pieces around NVS and keeps settings. Prefer the web updater after the first install.</p>
+<h2>Put apps in slots</h2>
+<ol>
+<li>Download the <code>.bin</code> for <strong>this board</strong> from the project’s releases.</li>
+<li>Copy it to the card root. USB disk mode is the least annoying way.</li>
+<li>On the launcher: Install → file → slot → name.</li>
+<li>Boot the slot once to confirm, then reboot to confirm you land back in the launcher.</li>
+</ol>
+<p>bmorcelli can skip the copy step: <code>OTA</code> → catalog → install. It records downloads in <code>downloaded.json</code> so later update checks know what you have.</p>
+<h3>Binaries that are known to work in a slot</h3>
+<table>
+<thead>
+<tr>
+<th>App</th>
+<th>Where</th>
+<th>Plus note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bruce</td>
+<td><a href="https://github.com/BruceDevices/firmware">BruceDevices/firmware</a> releases, asset with <code>lilygo-t-embed-cc1101</code> in the name</td>
+<td>Use a Plus asset if one is published; otherwise the CC1101 asset. nRF24 menus need the Plus build.</td>
+</tr>
+<tr>
+<td>Flipper port</td>
+<td>Sor3nt ESP32 port releases (<code>furi_esp32.bin</code> or the current name)</td>
+<td>Same T-Embed target. Unpack <code>sdcard.zip</code> or the UI is empty.</td>
+</tr>
+<tr>
+<td>Willy V3</td>
+<td><a href="https://github.com/h-RAT/Willy_Firmware_V3_T-Embed_CC1101">h-RAT/Willy_Firmware_V3_T-Embed_CC1101</a></td>
+<td>Separate Plus build. Do not cross-flash.</td>
+</tr>
+<tr>
+<td>Capibara, Marauder-style builds, your own PlatformIO app</td>
+<td>That project’s release, ESP32-S3, 16 MB flash</td>
+<td>Must use this board’s pins. A generic ESP32-S3 Marauder image will not drive the CC1101.</td>
+</tr>
+</tbody>
+</table>
+<p>Three slots on loznoc (about 4.5 MB each, apps start at <code>0x1A0000</code>). A single image bigger than the slot will be refused — that is the launcher protecting the next slot, not a bad cable.</p>
+<h2>Suggested layout</h2>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>App</th>
+<th>Why</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Bruce</td>
+<td>Daily driver, CC1101 + NFC + IR + Wi-Fi</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Flipper port</td>
+<td>UI you already know, needs the SD asset pack</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Spare</td>
+<td>Willy, a test build, or empty</td>
+</tr>
+</tbody>
+</table>
+<p>Names and icons can be changed later. On loznoc that is Settings → Icons. On bmorcelli it is the app manager / CFG.</p>
+<h2>What not to do</h2>
+<ul>
+<li>Do not flash a second launcher into a slot. A launcher expects to own <code>0x0</code> and the partition table. Inside a slot it either boot-loops or boots and then cannot see the other slots.</li>
+<li>Do not install a binary built for T-Embed (no CC1101), CYD, or M5Stack. Wrong display pins look like a black screen or a torn image.</li>
+<li>Do not format the card after installing if the app keeps its databases there. The flash slot will still boot; the app will look blank.</li>
+</ul></main></body></html>

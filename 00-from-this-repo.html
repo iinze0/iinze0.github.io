@@ -1,0 +1,33 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Setup order — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Do the whole setup from this repo</h1>
+<p>You do not need a second guide. Firmware binaries stay on the project that builds them (license and size). This page is the order of operations. Shops and antenna bands are worldwide: <a href="08-buy.html">buy</a>.</p>
+<h2>0. Read <a href="legal.html">LEGAL.md</a></h2>
+<p>If the thing you want to open, copy, or knock off the air is not yours, stop. The rest of this page is install only. The penalty section is written against Norwegian law as a concrete example. The same acts are offences almost everywhere else (CFAA, Computer Misuse Act, and the local equivalent).</p>
+<h2>1. Identify the board</h2>
+<p><a href="01-hardware.html">Hardware</a>. Plus has the nRF24 fitted. Original does not. Antenna version (internal or SMA) is a separate choice.</p>
+<h2>2. Card</h2>
+<p><a href="02-sd-card.html">SD card</a>. FAT32, 8–32 GB, inserted before first launcher boot. What to buy is on <a href="10-extras.html">extras</a>.</p>
+<h2>3. Pick one install</h2>
+<p>Single app, no switching: <a href="03-single-firmware.html">single firmware</a>.</p>
+<p>More than one app: <a href="04-multi-firmware.html">multi-firmware</a>. Flash exactly one of these, not both:</p>
+<ul>
+<li>bmorcelli Launcher — https://bmorcelli.github.io/Launcher/</li>
+<li>loznoc dual-boot — https://loznoc.github.io/dualboot/</li>
+</ul>
+<p>Browser: desktop Chrome or Edge. Cable: USB-C data. Board charges while plugged in; click the encoder if the screen is dark.</p>
+<h2>4. Apps to put in slots</h2>
+<p>Download the matching asset from the project, copy to the card root, install into a slot from the launcher.</p>
+<ul>
+<li>Bruce — https://github.com/BruceDevices/firmware/releases — asset name contains <code>lilygo-t-embed-cc1101</code>. Web flasher: https://bruce.computer/</li>
+<li>Willy V3 — https://github.com/h-RAT/Willy_Firmware_V3_T-Embed_CC1101 — Plus asset only on a Plus board</li>
+<li>Flipper-style port — Sor3nt ESP32 port releases, plus that project's sdcard pack unpacked on the card</li>
+<li>Factory demo, if you need a known-good image — https://github.com/Xinyuan-LilyGO/T-Embed-CC1101</li>
+</ul>
+<p>Suggested slots: 1 Bruce, 2 Flipper port, 3 spare. Name the slot with the version.</p>
+<h2>5. First boot of an app</h2>
+<p>Set Sub-GHz to the band that is legal where you are before any transmit. 868 or 433.92 on the European plan, 915 in the US, Canada, Australia, and New Zealand. The whip has to match. Confirm the encoder works in the launcher before you blame the app.</p>
+<h2>6. Later</h2>
+<p><a href="05-updates.html">Updates</a> for launcher vs slot vs card files. <a href="06-troubleshooting.html">Troubleshooting</a> if the port never appears or the screen stays black.</p>
+<h2>What you still do on the device, not in git</h2>
+<p>Slot install, USB disk mode, and OTA catalog installs happen on the launcher UI. This repo cannot push a <code>.bin</code> into your board. The web flashers above are the button that does.</p></main></body></html>

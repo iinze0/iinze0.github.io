@@ -1,0 +1,99 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SD card and extras — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>SD card and everything else</h1>
+<p>The box is the board, the shell, the battery, and a leaflet. No card, and the cable in the bag is often charge-only. Prices checked 6 October 2026.</p>
+<p>Same affiliate rule as the board page: links are clean. Append your own tracking tag if you have one. Do not change the item id.</p>
+<h2>Buy this</h2>
+<table>
+<thead>
+<tr>
+<th>Thing</th>
+<th>Get</th>
+<th>Skip</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>microSD</td>
+<td>16 or 32 GB, Class 10 / U1 / A1, SanDisk, Samsung, or Kingston</td>
+<td>No-name marketplace packs, 64 GB and up, "Endurance" camera cards</td>
+<td>A shop in your country. See below.</td>
+</tr>
+<tr>
+<td>USB-C cable</td>
+<td>A cable you have already used to copy files to a phone</td>
+<td>The short lead in the LilyGO bag, until you have proved it enumerates a serial port</td>
+<td>One you own, or any local electronics shop</td>
+</tr>
+<tr>
+<td>Sub-GHz whip</td>
+<td>The band that is legal where you are. See the table on the <a href="08-buy.html">buy page</a>.</td>
+<td>915 in Europe, 868 as your only whip in the US</td>
+<td>Kit on the buy page, or a radio shop</td>
+</tr>
+<tr>
+<td>Shell kit</td>
+<td>Only if your board is the internal-antenna version</td>
+<td>Drilling the stock shell</td>
+<td><a href="https://www.aliexpress.com/item/1005012301045696.html">AliExpress 1005012301045696</a> · <a href="https://lilygo.cc/products/t-embed-series-shell">lilygo.cc shell</a></td>
+</tr>
+</tbody>
+</table>
+<h2>SD card</h2>
+<p>The slot is SPI, not a camera bus. A 170 MB/s SanDisk Extreme does nothing here except cost more. A fast U3 / V30 card is for a drone, not this board.</p>
+<p>What works everywhere:</p>
+<ul>
+<li>16 GB or 32 GB. microSDHC, so it can be FAT32 without a fight.</li>
+<li>Brand: SanDisk, Samsung EVO, Kingston Canvas Select. A no-name card is the usual "card not detected" after a week.</li>
+<li>Format FAT32, allocation 32 KB, before it goes in the slot. exFAT mounts on a phone and not on the ESP32.</li>
+<li>8 GB is enough for Bruce captures and a few <code>.bin</code> files. 32 GB is the ceiling that is still painless. 64 GB and above ship as exFAT and need a PC tool (Rufus, Disk Utility, <code>mkfs.vfat</code>). SPI reads get slower as the card gets bigger, for no benefit.</li>
+</ul>
+<p>Buy it locally. A genuine 32 GB Class 10 is a few dollars / euros / pounds in any supermarket electronics aisle, Amazon, MediaMarkt, Best Buy, JB Hi-Fi, Komplett, Elkjøp, Clas Ohlson, Yodobashi. AliExpress saves almost nothing once postage is in, and fake SanDisk cards are common there.</p>
+<p>Two cards is the only extra worth having: one in the device, one on the desk with the firmware <code>.bin</code> files and the Flipper-port sdcard pack already unpacked. Label them.</p>
+<p>A USB card reader (any UHS-I reader) is the fallback when the launcher's USB disk mode sulks. Not required if USB mode works.</p>
+<h2>Cable and power</h2>
+<p>USB-C data, not charge-only. Test: plug it into a phone and see if the computer mounts storage. If the phone only charges, the lead is useless for flashing.</p>
+<p>The pack in the unit is a 3.7 V 1300 mAh Li-Po. LilyGO's own note is to keep charge current at or under about 600 mA. A random "2000 mAh upgrade" from a marketplace is a swollen-cell lottery and often the wrong connector. Replace like for like only if the stock pack is puffed. Do not charge it loose on a hobby charger at 1 A.</p>
+<p>Mains power is whatever USB charger you already use. The board is USB-C. No region-specific brick.</p>
+<h2>Nice, not needed</h2>
+<table>
+<thead>
+<tr>
+<th>Extra</th>
+<th>Why</th>
+<th>Where</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>NTAG213 / NTAG215 cards and stickers</td>
+<td>Your own NFC targets. PN532 is 13.56 MHz ISO14443. It will not read 125 kHz or ISO15693.</td>
+<td>Any electronics shop, Amazon, AliExpress. Buy blank tags. Do not buy a listing that says the card is already cloned.</td>
+</tr>
+<tr>
+<td>Qwiic / STEMMA QT cable</td>
+<td>The two expansion ports. Useful later, useless on day one.</td>
+<td>Adafruit, LilyGO, SparkFun, AliExpress</td>
+</tr>
+<tr>
+<td>Lanyard</td>
+<td>The shell has a hole. Cheap, and the encoder is happier when the board is not dropped.</td>
+<td>Anywhere</td>
+</tr>
+<tr>
+<td>Spare whip for the other band</td>
+<td>868 and 915 are different lengths. Travel with the one that matches where you will transmit.</td>
+<td>Same place as the shell kit</td>
+</tr>
+</tbody>
+</table>
+<h2>Do not buy</h2>
+<ul>
+<li>A second board "because it comes with Bruce". Flash takes ten minutes and the shop image is old.</li>
+<li>An amplifier, a "10 W" module, or a jammer accessory. Illegal in essentially every country that has a radio regulator.</li>
+<li>A whip for a band you are not allowed to use.</li>
+<li>A plain T-Embed (no CC1101) as a spare. Different board.</li>
+<li>Screen protectors cut for a phone. The window is a small clear panel; a film usually just traps dust in the shell.</li>
+</ul>
+<p>Board and antenna sources stay on the <a href="08-buy.html">buy page</a>.</p></main></body></html>

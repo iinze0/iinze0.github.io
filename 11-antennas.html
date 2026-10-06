@@ -1,0 +1,241 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Antennas — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Antennas, by radio and by size</h1>
+<p>Four radios, not one "2.4 GHz" bucket.</p>
+<table>
+<thead>
+<tr>
+<th>Radio</th>
+<th>Band</th>
+<th>Jack</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CC1101 Sub-GHz</td>
+<td>433, 868, or 915</td>
+<td>Its own SMA. Swap the whip when you change band.</td>
+</tr>
+<tr>
+<td>Wi-Fi</td>
+<td>2.4 GHz only. This ESP32-S3 has no 5 GHz.</td>
+<td>The ESP32 antenna.</td>
+</tr>
+<tr>
+<td>Bluetooth / BLE</td>
+<td>2.4 GHz, same chip as Wi-Fi</td>
+<td>Same ESP32 antenna as Wi-Fi. One whip serves both.</td>
+</tr>
+<tr>
+<td>nRF24</td>
+<td>2.4 GHz, Plus only</td>
+<td>Its own radio. Not the Wi-Fi whip, and not the CC1101 whip.</td>
+</tr>
+</tbody>
+</table>
+<p>The jack on the LilyGO external shell is <strong>SMA female</strong>. The whip must be <strong>SMA male</strong>. RP-SMA threads on and does not connect. IPEX / U.FL is inside the board; you only need a pigtail if you are not using LilyGO's shell.</p>
+<p>A bigger antenna is better only if it is cut for that radio. A listing that says 12 dBi on a finger-length duck is marketing. No amplifiers.</p>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Length</th>
+<th>On this device</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>about 4–6 cm</td>
+<td>Pocket. Worst range. Fine if the other end is in the same room.</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>about 10–12 cm</td>
+<td>The one to buy for Sub-GHz.</td>
+</tr>
+<tr>
+<td>Long</td>
+<td>about 20–21 cm</td>
+<td>Bench and outdoor. Snags a pocket and tips the board on a table.</td>
+</tr>
+</tbody>
+</table>
+<p>Shell, only if the board is the internal-antenna version: <a href="https://lilygo.cc/products/t-embed-series-shell">lilygo.cc</a> · <a href="https://www.aliexpress.com/item/1005012301045696.html">AliExpress kit</a>. About $11. Some listings are the case only.</p>
+<h2>Sub-GHz — CC1101</h2>
+<h3>868 MHz — Europe, UK, EEA</h3>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Get this</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>Short SMA-male stub</td>
+<td><a href="https://www.aliexpress.com/item/1005006673760959.html">868 variant, 4-pack</a></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>~11 cm SMA male</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-868mhz-sma-male-antenna.html">868 MHz SMA male</a></td>
+</tr>
+<tr>
+<td>Long</td>
+<td>20 cm half-wave, SMA male</td>
+<td><a href="https://shop.mtoolstec.com/product/868mhz-20cm-whip-antenna">MTools 20 cm 868</a> · <a href="https://www.aliexpress.com/w/wholesale-868mhz-20cm-sma-antenna.html">AliExpress 20 cm 868</a></td>
+</tr>
+</tbody>
+</table>
+<h3>915 MHz — USA, Canada, Australia, New Zealand</h3>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Get this</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>Short SMA-male stub</td>
+<td><a href="https://www.aliexpress.com/item/1005006673760959.html">915 variant, 4-pack</a></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>~11 cm SMA male</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-915mhz-sma-male-antenna.html">915 MHz SMA male</a></td>
+</tr>
+<tr>
+<td>Long</td>
+<td>20 cm half-wave, SMA male</td>
+<td><a href="https://shop.mtoolstec.com/product/915mhz-20cm-whip-antenna">MTools 20 cm 915</a> · <a href="https://www.aliexpress.com/w/wholesale-915mhz-20cm-sma-antenna.html">AliExpress 20 cm 915</a></td>
+</tr>
+</tbody>
+</table>
+<p>A whip sold as "868/915" is a compromise. If you only use one band, buy that band.</p>
+<h3>433.92 MHz — only if you use 433</h3>
+<p>A quarter wave at 433 is about 17 cm, so small is already a compromise.</p>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Get this</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>Short rubber SMA male</td>
+<td><a href="https://www.aliexpress.com/item/1005004730589896.html">433 variant</a></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>~17 cm</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-433mhz-sma-male-antenna.html">433 MHz SMA male</a></td>
+</tr>
+<tr>
+<td>Long</td>
+<td>~21 cm</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-433mhz-21cm-sma-antenna.html">433 MHz 21 cm SMA</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Wi-Fi — ESP32-S3, 2.4 GHz</h2>
+<p>This is the Wi-Fi antenna. Quarter wave at 2.4 GHz is about 3 cm, so small is the correct length. There is no 5 GHz radio on this board, so a "dual-band Wi-Fi" whip does nothing extra.</p>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Get this</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>3–5 cm Wi-Fi stub, SMA male</td>
+<td><a href="https://www.aliexpress.com/item/1005004730589896.html">2.4G Wi-Fi variant</a></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>~10 cm, SMA male. Listing must say SMA male, not RP-SMA.</td>
+<td><a href="https://www.aliexpress.com/item/1005005672147757.html">Wi-Fi SMA male</a></td>
+</tr>
+<tr>
+<td>Long</td>
+<td>Magnetic-base Wi-Fi whip on a cable. Desk only.</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-2.4ghz-wifi-sma-male-antenna.html">Wi-Fi SMA male with cable</a></td>
+</tr>
+</tbody>
+</table>
+<h2>Bluetooth — same ESP32 antenna as Wi-Fi</h2>
+<p>BLE 5 on this board does not have its own jack. The Bluetooth antenna is the Wi-Fi antenna. Buy one whip from the Wi-Fi table and both radios use it. A second "Bluetooth antenna" only makes sense if you have brought a second SMA out of the shell.</p>
+<p>If you want the listing titled for Bluetooth anyway, same sizes, same connector:</p>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Get this</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>3–5 cm BLE stub, SMA male</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-bluetooth-antenna-sma-male.html">Bluetooth 2.4 GHz SMA male</a></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>~10 cm SMA male</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-2.4ghz-bluetooth-sma-antenna.html">BLE SMA male whip</a></td>
+</tr>
+<tr>
+<td>Long</td>
+<td>Cable whip, desk only</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-bluetooth-2.4ghz-sma-male-antenna.html">Bluetooth antenna SMA male cable</a></td>
+</tr>
+</tbody>
+</table>
+<h2>nRF24 — Plus only, its own 2.4 GHz radio</h2>
+<p>Not Wi-Fi, not Bluetooth, not the CC1101. The Plus has an nRF24 on the board. If that path is still on a chip antenna, an external whip means a pigtail from its IPEX, not the ESP32 jack.</p>
+<table>
+<thead>
+<tr>
+<th>Size</th>
+<th>Get this</th>
+<th>Link</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Small</td>
+<td>3–5 cm, the right length for 2.4 GHz</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-nrf24l01-antenna-sma.html">nRF24 2.4 GHz SMA</a></td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>~10 cm SMA male</td>
+<td><a href="https://www.aliexpress.com/item/1005005672147757.html">2.4 GHz SMA male</a></td>
+</tr>
+<tr>
+<td>Long</td>
+<td>Cable, desk only</td>
+<td><a href="https://www.aliexpress.com/w/wholesale-2.4ghz-sma-male-antenna.html">2.4 GHz SMA male with cable</a></td>
+</tr>
+</tbody>
+</table>
+<h2>What not to click</h2>
+<ul>
+<li>RP-SMA, unless you have checked the jack.</li>
+<li>A 5 GHz or "Wi-Fi 6E" whip. This board cannot use it.</li>
+<li>One whip for Sub-GHz and Wi-Fi.</li>
+<li>"12 dBi" panel antennas as a daily carry.</li>
+<li>Anything sold as a jammer antenna or a power amplifier.</li>
+</ul></main></body></html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Buy — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>What to buy, and where it is cheapest</h1>
+<p>Prices below were checked 6 October 2026. They move with currency, VAT, and shipping. The shop name matters more than the sticker: buy the board from LilyGO, not a random store using their photo.</p>
+<p>No affiliate code is baked in. Every AliExpress link is the clean item URL. If you have an AliExpress portal or Admitad code, append your tracking to these same URLs. Do not swap the item id.</p>
+<h2>Best thing to get</h2>
+<p><strong>T-Embed CC1101 Plus, external-antenna version (K268-01), transparent or black.</strong></p>
+<p>Plus is the original board plus an onboard nRF24. Firmware that cares (Bruce, Willy, Bit Pirate) only exposes that radio on the Plus build. The original CC1101 is fine if you already own it and do not care about nRF24. Do not buy a plain T-Embed with no CC1101.</p>
+<p>External antenna (K268-01) is the one to order if you do not already have the board. You can change whips without opening the shell. Internal (K268) is smaller in a pocket and a bit cheaper, and LilyGO tells you not to crack that case open later — IR and the flex are easy to kill. If you already have an internal unit, buy their shell kit instead of a second board.</p>
+<p>Match the Sub-GHz whip to the legal ISM plan where you are. One whip is one band. Wi-Fi, BLE, and nRF24 are 2.4 GHz and are not the CC1101 antenna.</p>
+<table>
+<thead>
+<tr>
+<th>Region</th>
+<th>Sub-GHz whip to order</th>
+<th>Do not order</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Europe, UK, Norway, most of Africa and Asia on the EU plan</td>
+<td>868 MHz. 433.92 MHz only as a second whip if you use that band.</td>
+<td>915 MHz as your only antenna</td>
+</tr>
+<tr>
+<td>USA, Canada, Australia, New Zealand, much of South America</td>
+<td>915 MHz. 433 MHz only if you actually use it under local rules.</td>
+<td>868 MHz as your only antenna</td>
+</tr>
+<tr>
+<td>Japan</td>
+<td>Check the local Sub-GHz plan before you buy. 915 is not automatic.</td>
+<td>A random "LoRa 915" whip assumed to be legal</td>
+</tr>
+</tbody>
+</table>
+<p>315 MHz shows up in the CC1101 table and on some older remotes. It is not a general-purpose band. Do not buy a 315 whip unless you already know you need it.</p>
+<h2>Board</h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>What</th>
+<th>Price seen</th>
+<th>Why this one</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://lilygo.cc/products/t-embed-cc1101-plus">lilygo.cc Plus</a></td>
+<td>Official, internal and external</td>
+<td>From about $54.64 before shipping</td>
+<td>Lowest board price worldwide. DHL or FedEx 7–10 days, standard 10–25. Overseas warehouse in Germany, the US, or Canada is faster when that warehouse has stock. They charge product + shipping; import VAT, GST, or duty is on you unless checkout says otherwise.</td>
+</tr>
+<tr>
+<td><a href="https://www.aliexpress.com/item/1005007967599411.html">AliExpress, LilyGO official store, item 1005007967599411</a></td>
+<td>Same board. Variant picker says T-Embed or T-Embed PLUS</td>
+<td>About €72 with EU VAT on the listing checked. US, UK, AU, and NO checkouts differ.</td>
+<td>Often the easiest landed price, because AliExpress collects VAT/GST in a lot of countries at checkout. Seller must be <strong>lilygo Official Store</strong>. Pick PLUS, then external antenna if the variant list has it.</td>
+</tr>
+<tr>
+<td>Local reseller (DigiKey-style makers, regional LilyGO dealers)</td>
+<td>Same board, shelf stock</td>
+<td>Usually $70–100 equivalent</td>
+<td>Pay this when you want it this week. Chip Depot in Switzerland was CHF 79.80 for the external Plus. Fine for speed, bad as the default.</td>
+</tr>
+<tr>
+<td>Anyone else on AliExpress (JY TEC, Cricket Electronics, "K268" at $105)</td>
+<td>Same photo, worse price</td>
+<td>$90–105</td>
+<td>Skip. Same factory board, extra margin, slower argument if it arrives dead.</td>
+</tr>
+</tbody>
+</table>
+<p>Collection page if you want the old CC1101 next to Plus: <a href="https://lilygo.cc/collections/t-embed-series">lilygo.cc/collections/t-embed-series</a>.</p>
+<p>Landed cost is board + shipping + tax. In the EU and UK, AliExpress usually shows VAT in the price. In the US under the de minimis line, lilygo.cc plus cheap shipping often wins. In countries that tax all imports (Norway VOEC, Australia GST, Switzerland), compare the AliExpress tax-included total with lilygo.cc plus the post office bill.</p>
+<h2>Antennas and shell</h2>
+<table>
+<thead>
+<tr>
+<th>What</th>
+<th>Where</th>
+<th>Price seen</th>
+<th>Note</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>External shell + antenna kit, for an internal-antenna board</td>
+<td><a href="https://lilygo.cc/products/t-embed-series-shell">lilygo.cc shell</a> and <a href="https://www.aliexpress.com/item/1005012301045696.html">AliExpress item 1005012301045696</a></td>
+<td>About $11</td>
+<td>LilyGO's own upgrade. Transparent or black. This is the supported way. A random SMA drilled into the stock shell is how the IR window dies.</td>
+</tr>
+<tr>
+<td>868 MHz SMA-male whip</td>
+<td>The kit, or any radio shop</td>
+<td>Cheap</td>
+<td>Europe and anyone on the 868 plan.</td>
+</tr>
+<tr>
+<td>915 MHz SMA-male whip</td>
+<td>Same</td>
+<td>Cheap</td>
+<td>US, Canada, Australia, New Zealand.</td>
+</tr>
+<tr>
+<td>433 MHz SMA-male whip</td>
+<td>Same, separate antenna</td>
+<td>Cheap</td>
+<td>Only if you use 433.92. One whip cannot be both.</td>
+</tr>
+<tr>
+<td>2.4 GHz stub</td>
+<td>Only if that connector is the nRF24 or Wi-Fi external port on your version</td>
+<td>Cheap</td>
+<td>Do not screw a 2.4 GHz whip onto the CC1101 jack.</td>
+</tr>
+</tbody>
+</table>
+<p>LilyGO's upgrade video is on their channel; the shell product is the one they point at. NFC is a coil on the board, not the SMA jack. Changing the Sub-GHz whip does not move NFC.</p>
+<h2>Small stuff</h2>
+<p>Card, cable, battery, tags: <a href="10-extras.html">extras</a>.</p>
+<p>Firmware is free. Do not pay a shop for a "preflashed Bruce" unit. Flash it yourself from <a href="09-firmware-index.html">the index</a>.</p>
+<h2>Order that makes sense</h2>
+<ol>
+<li>Plus, external antenna, from whichever of lilygo.cc or the AliExpress official store is cheaper after shipping and tax to your country.</li>
+<li>A whip for your region's Sub-GHz plan, if the box did not include one you trust.</li>
+<li>A 16 or 32 GB card from a local shop.</li>
+<li>Shell kit only if the board you already have is the internal-antenna version.</li>
+</ol></main></body></html>

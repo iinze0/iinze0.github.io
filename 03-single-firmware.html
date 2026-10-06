@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Single firmware — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Single firmware</h1>
+<p>Use this if you only want Bruce, Willy, or one other app and you do not care about switching. Skip to <a href="04-multi-firmware.html">multi-firmware</a> if you want more than one.</p>
+<h2>What you need</h2>
+<ul>
+<li>Desktop Chrome or Edge. Firefox only works on builds that actually expose WebSerial (recent Firefox does on some platforms; Chrome is the boring reliable choice). Safari has no WebSerial.</li>
+<li>USB-C data cable.</li>
+<li>The board charged enough that it does not brown out mid-flash.</li>
+</ul>
+<p>The T-Embed enters download mode on its own when the flasher asks. You do not hold a boot button for the stock web flashers.</p>
+<h2>Bruce (most common)</h2>
+<ol>
+<li>Open <a href="https://bruce.computer/">bruce.computer</a> and use the web flasher, or a current mirror such as the Bruce device page on flash.pingequa.com.</li>
+<li>Connect. Pick the serial port. On Windows it is a COM port; on Linux <code>/dev/ttyACM0</code>; on macOS <code>/dev/cu.usbmodem…</code>.</li>
+<li>Pick the <strong>CC1101</strong> build, not the plain T-Embed build (that one has no Sub-GHz). If the flasher lists Plus separately, pick Plus only on a Plus board.</li>
+<li>Flash. Erase first if you are leaving factory demo firmware or a broken install. Erase wipes Wi-Fi, RF lists, and Bruce config.</li>
+<li>Unplug, plug back in, turn it on with the encoder wheel.</li>
+</ol>
+<p>Current stable as of early October 2026 was Bruce 1.16.1. Check the release page; do not treat that number as permanent.</p>
+<p>Manual equivalent, if the browser path fails:</p>
+<pre><code class="language-bash">pip install esptool
+esptool --chip esp32s3 --port /dev/ttyACM0 erase-flash
+esptool --chip esp32s3 --port /dev/ttyACM0 write-flash 0x0 Bruce-lilygo-t-embed-cc1101.bin
+</code></pre>
+<p>The exact asset name is whatever Bruce tagged for this board in that release. A merged image writes at <code>0x0</code>. A split image writes bootloader, partitions, and app at the offsets in the release notes — do not invent offsets.</p>
+<h2>Willy Firmware V3</h2>
+<p>Built for both boards, with nRF24 only on Plus. Releases: <a href="https://github.com/h-RAT/Willy_Firmware_V3_T-Embed_CC1101">h-RAT/Willy_Firmware_V3_T-Embed_CC1101</a>. Same web-flash or esptool flow. Pick the Plus asset on a Plus.</p>
+<h2>Factory demo</h2>
+<p>LilyGO ships a demo from <a href="https://github.com/Xinyuan-LilyGO/T-Embed-CC1101">Xinyuan-LilyGO/T-Embed-CC1101</a>. Useful as a known-good test if a third-party flash leaves you with a black screen. Flash it the same way, confirm the encoder and display, then go back to the firmware you actually want.</p>
+<h2>After it boots</h2>
+<ul>
+<li>Set the CC1101 band to 868 (or 433.92) before you transmit anything.</li>
+<li>Give Bruce a FAT32 card if you want captures kept.</li>
+<li>Rotary encoder navigates, push selects, side button is back on most builds. Hold the encoder to power off.</li>
+</ul></main></body></html>

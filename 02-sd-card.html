@@ -1,0 +1,38 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SD card — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>SD card</h1>
+<p>Almost every multi-firmware setup expects a card. The launcher can still boot with no card; you just cannot install anything onto the slots from files.</p>
+<h2>Prep</h2>
+<ol>
+<li>8, 16, or 32 GB microSD. Bigger cards often ship as exFAT. The ESP32 SD library wants <strong>FAT32</strong>.</li>
+<li>On Windows, FAT32 format of cards over 32 GB needs a third-party tool (Rufus, guiformat). On macOS, Disk Utility → MS-DOS (FAT). On Linux, <code>mkfs.vfat</code>.</li>
+<li>Allocation unit 32 KB is a safe default.</li>
+<li>Put the card in before you boot the launcher if you want it enumerated on first start.</li>
+</ol>
+<p>SPI SD on this board is slow. Do not be surprised if a 4 MB binary takes a few seconds to copy into a slot.</p>
+<h2>What goes on the card</h2>
+<pre><code class="language-text">/
+  bruce-t-embed-cc1101.bin      # app image, any name you like
+  furi_esp32.bin
+  willy.bin
+  /IR
+  /RFID
+  /subghz
+  /Bruce                        # Bruce creates this once it runs
+</code></pre>
+<p>Rules that actually matter:</p>
+<ul>
+<li>The launcher installs from a <code>.bin</code> in the card root, or from a folder it tells you about. Keep names short, no spaces if a firmware is picky.</li>
+<li>A merged app image (one file, bootloader + partition table + app, or a plain app image the launcher knows how to wrap) is what you want. Loose <code>bootloader.bin</code> + <code>partitions.bin</code> + <code>firmware.bin</code> must be merged first. bmorcelli Launcher can merge catalog multi-part entries for you.</li>
+<li>Flipper-style ports are not done when the <code>.bin</code> is flashed. They also need the project’s <code>sdcard.zip</code> unpacked to the card root (<code>/ext</code> content: databases, FAPs, animations). Without it the UI boots and most apps have nothing to load.</li>
+<li>Bruce stores captures and config partly in flash (LittleFS) and partly on the card. A launcher without a LittleFS partition will look like “Bruce forgets settings”. See <a href="05-updates.html">updates</a>.</li>
+</ul>
+<h2>USB disk mode</h2>
+<p>Both launchers can expose the card as a USB drive so you do not have to pull it.</p>
+<ul>
+<li>loznoc dual-boot: main menu → <strong>USB</strong>. Copy files, then back out so it remounts the card.</li>
+<li>bmorcelli Launcher: <strong>USB</strong> in the main menu.</li>
+</ul>
+<p>Use a data cable. If the PC only charges, the port is power-only or the cable is. Eject from the computer before you leave USB mode.</p>
+<h2>Wi-Fi drop</h2>
+<p>loznoc’s launcher can host a page (its own AP, or joined to your network as <code>tembed.local</code>) that accepts <code>.bin</code> files and theme packs. bmorcelli’s <strong>WUI</strong> is the same idea. Useful when the card is glued in and you do not want to open the shell.</p></main></body></html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Hardware — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Hardware: CC1101 vs CC1101 Plus</h1>
+<p>Both boards are the same idea: an ESP32-S3 handheld with a colour screen, a rotary encoder, a battery, and radios. Flash size and display match. The firmware target does not.</p>
+<h2>Shared</h2>
+<table>
+<thead>
+<tr>
+<th>Part</th>
+<th>Both boards</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>MCU</td>
+<td>ESP32-S3, dual-core, Wi-Fi + BLE 5</td>
+</tr>
+<tr>
+<td>Flash / PSRAM</td>
+<td>16 MB / 8 MB</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>1.9 inch ST7789, 170×320</td>
+</tr>
+<tr>
+<td>Controls</td>
+<td>Rotary encoder + side button</td>
+</tr>
+<tr>
+<td>Sub-GHz</td>
+<td>CC1101, bands roughly 300–348, 387–464, 779–928 MHz</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td>PN532 at 13.56 MHz (ISO14443). Not ISO15693.</td>
+</tr>
+<tr>
+<td>IR</td>
+<td>Transmit and receive</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>microSD (SPI, CS on GPIO 13)</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>Speaker + microphone</td>
+</tr>
+<tr>
+<td>Power</td>
+<td>3.7 V pack, about 1300 mAh, BQ25896 charger + fuel gauge</td>
+</tr>
+<tr>
+<td>LED</td>
+<td>WS2812</td>
+</tr>
+<tr>
+<td>Expansion</td>
+<td>Qwiic-style ports</td>
+</tr>
+</tbody>
+</table>
+<p>CC1101 band is selected in software with <code>SW0</code> / <code>SW1</code> (GPIOs 48 and 47 on the stock LilyGO map): 315, 434, or 868/915. The chip can tune all of those. Your regulator cannot. Set the frequency to a band that is legal where you are standing, and stay inside that band's power and duty-cycle limits.</p>
+<table>
+<thead>
+<tr>
+<th>Where you are</th>
+<th>Use</th>
+<th>Leave alone</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Europe, UK, Norway, EEA</td>
+<td>433.92 or 868 MHz</td>
+<td>915 MHz</td>
+</tr>
+<tr>
+<td>USA, Canada</td>
+<td>915 MHz, and 433 only if the part allows it</td>
+<td>868 as a default</td>
+</tr>
+<tr>
+<td>Australia, New Zealand</td>
+<td>915 MHz plan</td>
+<td>Assuming EU 868 is fine</td>
+</tr>
+</tbody>
+</table>
+<p>LilyGO's own note on charge current: keep it at or under about half the pack capacity (they call out 600 mA as the ceiling for this pack).</p>
+<h2>The actual difference</h2>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>T-Embed CC1101</th>
+<th>T-Embed CC1101 Plus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Onboard nRF24L01 (2.4 GHz)</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>nRF24 via the expansion header</td>
+<td>Yes, if you wire a module</td>
+<td>Already fitted; header pins are shared with that radio</td>
+</tr>
+<tr>
+<td>Firmware label to pick</td>
+<td><code>t-embed-cc1101</code> / "CC1101"</td>
+<td><code>t-embed-cc1101-plus</code> / "Plus" when the project ships one</td>
+</tr>
+</tbody>
+</table>
+<p>Plus is not a faster CC1101. It is the same Sub-GHz radio plus a 2.4 GHz nRF24. Bruce, Willy, and Bit Pirate only expose nRF24 menus when that radio is actually there and the build was compiled for it.</p>
+<p>Pin maps are <strong>not</strong> identical. Bruce's board headers put nRF24 CE/CS on different GPIOs for the Plus build than for an expansion module on the original. Flashing a Plus binary on a non-Plus (or the other way around) often boots, then Sub-GHz or nRF24 silently does nothing. If a project only publishes one T-Embed CC1101 binary, that is usually the one both boards run, and nRF24 is a Plus extra inside that build — read that project's release notes before assuming.</p>
+<h2>How to tell the boards apart</h2>
+<ul>
+<li>Product print / seller listing: "Plus" vs plain CC1101.</li>
+<li>Plus has the nRF24 populated on the RF area. Original does not.</li>
+<li>Antenna version is a separate choice (internal PCB antenna vs external SMA). Both original and Plus have been sold both ways. External is the one you want if you swap antennas; internal is cleaner in a pocket.</li>
+<li>A plain T-Embed (no CC1101 at all) is a third board. Do not flash the CC1101 target onto it and expect a radio.</li>
+</ul>
+<h2>Antennas</h2>
+<p>Match the antenna to the band you actually use.</p>
+<ul>
+<li>Sub-GHz: 868 MHz whip on the European plan, 915 MHz whip on the US / AU / NZ plan, 433 MHz only if you stay on 433.92. A whip for the wrong band is just a bad antenna.</li>
+<li>nRF24 and Wi-Fi/BLE are both 2.4 GHz, but they are different radios with different connectors. Do not tie them to one antenna.</li>
+<li>The onboard Wi-Fi antenna (or the 2.4 GHz external, if that is the version you bought) is not the CC1101 antenna.</li>
+</ul>
+<p>Swapping to a matched external antenna is normal. Amplifiers and out-of-band use are how people get in trouble with the local regulator (FCC, Ofcom, NKOM, BNetzA, ACMA, and the rest). This guide does not cover that.</p>
+<h2>What a firmware can and cannot drive</h2>
+<table>
+<thead>
+<tr>
+<th>Interface</th>
+<th>Original</th>
+<th>Plus</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CC1101 Sub-GHz</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>PN532 NFC</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>IR</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Wi-Fi / BLE</td>
+<td>Yes</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>nRF24</td>
+<td>Only with an add-on module and a build that knows the pins</td>
+<td>Yes, on the Plus build</td>
+</tr>
+<tr>
+<td>LoRa / SX1262 / Meshtastic</td>
+<td>No</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The CC1101 is a transceiver, not a LoRa radio. Meshtastic firmware does not belong on this board.</p></main></body></html>

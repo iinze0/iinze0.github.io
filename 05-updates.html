@@ -1,0 +1,64 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Updates — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Updates</h1>
+<p>Three different things get updated, and they are not the same button.</p>
+<table>
+<thead>
+<tr>
+<th>Thing</th>
+<th>What changes</th>
+<th>What you keep</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Launcher</td>
+<td>The menu you boot into</td>
+<td>Slots and SD, if you do not erase flash</td>
+</tr>
+<tr>
+<td>An app slot</td>
+<td>Bruce, Flipper port, Willy, …</td>
+<td>Other slots, launcher settings</td>
+</tr>
+<tr>
+<td>Files on the card</td>
+<td>Captures, FAPs, IR, themes</td>
+<td>Flash untouched</td>
+</tr>
+</tbody>
+</table>
+<h2>Update the launcher</h2>
+<h3>loznoc dual-boot</h3>
+<p>On a device that already runs it: Settings → Power → Flash, so it reboots into download mode, then use the web flasher again.</p>
+<p>The web flasher writes <code>0x0</code>, <code>0x8000</code>, and <code>0x10000</code> and leaves NVS alone, so the PIN, theme, and slot names stay. Writing the single <code>launcher.bin</code> at <code>0x0</code> with esptool fills <code>0x9000–0x10000</code> with <code>0xFF</code> and resets those settings. App slots themselves start at <code>0x1A0000</code> and are not part of a launcher update.</p>
+<p>A power-cycle on a fresh device cancels download mode. If the port never shows up, you are not in download mode — go through the menu path, or hold the right button combo from the LilyGO docs while plugging in USB.</p>
+<h3>bmorcelli Launcher</h3>
+<p>Flash the new Launcher build from <a href="https://bmorcelli.github.io/Launcher/">bmorcelli.github.io/Launcher</a> the same way you flashed the first one. Do not tick full erase if you want installed apps to remain — erase is for a dirty board, not a version bump. After it boots, <code>OTA → Check for Updates</code> only looks at catalog firmware you downloaded, not at the launcher itself.</p>
+<h2>Update an app inside a slot</h2>
+<ol>
+<li>Download the new <code>.bin</code> (Bruce release, Willy release, …).</li>
+<li>Copy it to the card, or pull it from the catalog.</li>
+<li>Install it into the <strong>same slot</strong>. That overwrites that slot only.</li>
+<li>Boot it. Bruce will keep LittleFS config if the partition table still has the <code>spiffs</code> / LittleFS region. Card files are untouched.</li>
+</ol>
+<p>On bmorcelli, <code>OTA → Check for Updates</code> compares <code>downloaded.json</code> with LauncherHub and can fetch every newer file, then you install the new file into the slot. <code>[Update All]</code> downloads; it does not silently replace a running slot until you install.</p>
+<h2>The Bruce-forgets-settings fix</h2>
+<p>Only if the launcher is a loznoc build from before v1.1.</p>
+<p>Those builds had no LittleFS partition, so Bruce wrote config into a hole and lost it on the next boot. Fix is the partition table only, 3 KB, not a full reflash:</p>
+<pre><code class="language-bash">esptool --chip esp32s3 --port /dev/ttyACM0 write-flash 0x8000 partitions.bin
+</code></pre>
+<p><code>partitions.bin</code> is <code>docs/partitions.bin</code> in the loznoc repo. Enter download mode first. First Bruce boot after this formats the new filesystem and writes defaults — set Bruce settings once more and they stick. Current loznoc images already include this table; do not paste an old table over a new launcher.</p>
+<h2>Update files only</h2>
+<p>USB disk mode, or pull the card, or the Wi-Fi portal. Eject before reboot. Replacing <code>sdcard</code> assets for the Flipper port is this kind of update: no esptool involved.</p>
+<h2>Starting over</h2>
+<p>Full erase, then launcher, then slots:</p>
+<pre><code class="language-bash">esptool --chip esp32s3 --port /dev/ttyACM0 erase-flash
+</code></pre>
+<p>Then the web flasher. This is the right move after a bad partition table, a half-written image, or a board that boots to black and never enumerates. It does not touch the SD card.</p>
+<h2>Version hygiene</h2>
+<ul>
+<li>Write the version you installed in the slot name (<code>Bruce 1.16.1</code>). Future you will not remember.</li>
+<li>Do not mix a new app image with an old partition table from a different launcher. If a new launcher release says the table changed, flash the launcher the way that release says, not just the app.</li>
+<li>Beta Bruce builds are fine in a spare slot. Do not overwrite your known-good slot with a beta first.</li>
+</ul></main></body></html>

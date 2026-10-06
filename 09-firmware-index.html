@@ -1,0 +1,119 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Firmware — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Everything you can run on a T-Embed</h1>
+<p>One list. Launchers first, then apps. All of these are ESP32-S3 builds. A binary for another board does not belong in a slot.</p>
+<p>Install path is <a href="00-from-this-repo.html">from this repo</a>. Multi-boot detail is <a href="04-multi-firmware.html">multi-firmware</a>. What those menus are allowed to touch is <a href="07-capabilities-and-limits.html">capabilities</a> and <a href="legal.html">LEGAL.md</a>.</p>
+<h2>Launchers (pick one)</h2>
+<table>
+<thead>
+<tr>
+<th>Firmware</th>
+<th>Boards</th>
+<th>What it is</th>
+<th>Get it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>bmorcelli Launcher</td>
+<td>CC1101 and Plus (same device entry unless the flasher has grown a Plus row)</td>
+<td>Catalog, OTA, USB disk, WebUI. Usual multi-boot answer.</td>
+<td>https://bmorcelli.github.io/Launcher/ · https://github.com/bmorcelli/Launcher</td>
+</tr>
+<tr>
+<td>loznoc dual-boot</td>
+<td>CC1101, used on Plus the same way</td>
+<td>3 named slots, themes, PIN, Wi-Fi portal. Always returns home.</td>
+<td>https://loznoc.github.io/dualboot/ · https://github.com/loznoc/dualboot</td>
+</tr>
+</tbody>
+</table>
+<p>Flashing a second launcher replaces the first. Slot apps on the SD card stay.</p>
+<h2>Apps</h2>
+<table>
+<thead>
+<tr>
+<th>Firmware</th>
+<th>CC1101</th>
+<th>Plus</th>
+<th>Need besides the .bin</th>
+<th>Get it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bruce</td>
+<td>Yes</td>
+<td>Yes, Plus asset if the release has one</td>
+<td>FAT32 card if you want captures kept</td>
+<td>https://bruce.computer/ · https://github.com/BruceDevices/firmware/releases</td>
+</tr>
+<tr>
+<td>Willy V3</td>
+<td>Yes</td>
+<td>Yes, separate Plus build, nRF24 only there</td>
+<td>Card optional</td>
+<td>https://github.com/h-RAT/Willy_Firmware_V3_T-Embed_CC1101</td>
+</tr>
+<tr>
+<td>Flipper-style port (Sor3nt)</td>
+<td>Yes</td>
+<td>Same T-Embed target</td>
+<td><strong>sdcard pack unpacked</strong>. The .bin alone boots an empty UI.</td>
+<td>Project releases. Search Sor3nt ESP32 Flipper port. File has been shipped as <code>furi_esp32.bin</code>.</td>
+</tr>
+<tr>
+<td>CapibaraZero</td>
+<td>Yes, from 0.5.1</td>
+<td>Same family; confirm the asset name</td>
+<td>Their flash layout. Repo has been archived; 0.5.2 is the last tagged line.</td>
+<td>https://github.com/CapibaraZero/fw/releases · https://capibarazero.com/docs/esp32_s3/boards/LilyGo_T_Embed_CC1101/</td>
+</tr>
+<tr>
+<td>ESP32 Bit Pirate</td>
+<td>Yes</td>
+<td>Yes, separate manifest</td>
+<td>Web flasher picks the board</td>
+<td>https://geo-tp.github.io/ESP32-Bit-Pirate/boards/t-embed-cc1101/</td>
+</tr>
+<tr>
+<td>LilyGO factory demo</td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Nothing</td>
+<td>https://github.com/Xinyuan-LilyGO/T-Embed-CC1101</td>
+</tr>
+</tbody>
+</table>
+<p>Capibara and Bit Pirate go in a launcher slot the same way Bruce does, if the image fits (loznoc slots are about 4.5 MB). If it does not fit, it is a single-firmware flash, not a slot.</p>
+<p>Marauder-style and other ESP32-S3 images only work if that project ships a T-Embed target. A generic CYD or M5 binary will not drive this screen or the CC1101.</p>
+<h2>A sensible set</h2>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Put this here</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Bruce, current stable</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Flipper port, with the sdcard pack on the card</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Willy Plus build, or Bit Pirate, or empty</td>
+</tr>
+</tbody>
+</table>
+<p>Launcher is not a slot. It owns boot.</p>
+<h2>What is not a firmware for this board</h2>
+<ul>
+<li>Meshtastic, MeshCore, anything SX1262 / LoRa. The radio is a CC1101.</li>
+<li>Flipper Zero official firmware. Different CPU. The Sor3nt port is the thing that runs here.</li>
+<li>A “preflashed” image from a marketplace seller. Flash from the links above.</li>
+</ul></main></body></html>

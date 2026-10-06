@@ -1,0 +1,140 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Your own firmware — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+</nav></header><main><h1>Make your own firmware</h1>
+<p>You do not fork Bruce to blink the screen. A small PlatformIO app, built for this ESP32-S3, installs into a launcher slot the same way Bruce does. LilyGO's own examples live in <a href="https://github.com/Xinyuan-LilyGO/T-Embed-CC1101">Xinyuan-LilyGO/T-Embed-CC1101</a> and are the pin source of truth. This page is the path from an empty folder to a <code>.bin</code> in a slot.</p>
+<p>This is your board. The same legal line as the rest of the repo applies the moment the radio transmits: own hardware, own tags, own network. <a href="legal.html">LEGAL.md</a>.</p>
+<h2>What you are building for</h2>
+<table>
+<thead>
+<tr>
+<th>Fact</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chip</td>
+<td>ESP32-S3, 16 MB flash, 8 MB octal PSRAM</td>
+</tr>
+<tr>
+<td>USB</td>
+<td>CDC on boot. The port is the USB-C jack, no UART bridge chip.</td>
+</tr>
+<tr>
+<td>Display</td>
+<td>ST7789, 170×320, column offset 35</td>
+</tr>
+<tr>
+<td>Input</td>
+<td>Encoder on GPIO 4 and 5, push on 0, side button on 6</td>
+</tr>
+<tr>
+<td>I2C</td>
+<td>SDA 8, SCL 18. PN532 at 0x24, BQ27220 at 0x55, BQ25896 at 0x6B</td>
+</tr>
+<tr>
+<td>SD</td>
+<td>CS 13, shares SPI with the display (SCK 11, MOSI 9, MISO 10)</td>
+</tr>
+<tr>
+<td>CC1101</td>
+<td>CS 12, GDO0 3, GDO2 38, band switches 47 and 48</td>
+</tr>
+<tr>
+<td>nRF24</td>
+<td>Plus only. Pins differ from an expansion module on the original. Copy them from the Plus header in Bruce, do not guess.</td>
+</tr>
+</tbody>
+</table>
+<p>A plain T-Embed (no CC1101) uses different display and SD pins. Do not copy a non-CC1101 example onto this board. bmorcelli documents the split in the T-Embed environment of <a href="https://github.com/bmorcelli/Launcher">Launcher</a>.</p>
+<h2>Tools</h2>
+<ol>
+<li><a href="https://code.visualstudio.com/">VS Code</a> and the PlatformIO extension. Python 3 on the PATH.</li>
+<li>A USB-C data cable.</li>
+<li>Optional: Arduino IDE 2, board package "ESP32 by Espressif" at 3.x, board "ESP32S3 Dev Module", USB CDC On Boot enabled, flash 16 MB, PSRAM OPI. PlatformIO is the one LilyGO tests.</li>
+</ol>
+<h2>Smallest app</h2>
+<p>The starter in <a href="../examples/hello">examples/hello</a> brings the backlight up and prints on the ST7789. It does not touch the CC1101.</p>
+<pre><code class="language-bash">cd examples/hello
+pio run
+pio run -t upload --upload-port /dev/ttyACM0
+</code></pre>
+<p>Windows port is <code>COM5</code> or whatever Device Manager shows. Linux user needs <code>dialout</code>. First upload after a launcher is installed will replace the launcher. Upload to a spare board, or build only and install the app binary into a slot (next section).</p>
+<p><code>pio run</code> writes <code>.pio/build/tembed-cc1101/firmware.bin</code>. That file is the app. <code>firmware.factory.bin</code> next to it is a merged image and will wipe a launcher if you write it at <code>0x0</code>.</p>
+<h2>Put it in a slot instead of erasing the launcher</h2>
+<ol>
+<li>Build. Copy <code>firmware.bin</code> to the card root. Rename it (<code>hello.bin</code>) so you can tell revisions apart.</li>
+<li>Launcher → Install → that file → an empty slot.</li>
+<li>Boot the slot. Reboot. You should be back in the launcher.</li>
+</ol>
+<p>bmorcelli Launcher accepts that app binary directly (<a href="https://github.com/bmorcelli/Launcher/wiki/Obtaining-binaries-to-launch">their wiki</a>). loznoc slots are about 4.5 MB and start at <code>0x1A0000</code>. If the install refuses the file, the image is bigger than the slot. Strip debug, drop unused libraries, or flash it as the only firmware.</p>
+<p>Do not install a second launcher into a slot. A launcher expects to own <code>0x0</code>.</p>
+<h2>Turn on a peripheral, in this order</h2>
+<p>Copy the working example from LilyGO before you write your own driver. Each one is already wired.</p>
+<table>
+<thead>
+<tr>
+<th>Want</th>
+<th>LilyGO example</th>
+<th>Library they pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Screen</td>
+<td><code>display_test</code></td>
+<td>TFT_eSPI</td>
+</tr>
+<tr>
+<td>Encoder</td>
+<td><code>encode_test</code></td>
+<td>RotaryEncoder</td>
+</tr>
+<tr>
+<td>CC1101</td>
+<td>their RadioLib example</td>
+<td>RadioLib 6.5.0</td>
+</tr>
+<tr>
+<td>NFC</td>
+<td>PN532 example</td>
+<td>Seeed PN532</td>
+</tr>
+<tr>
+<td>IR</td>
+<td><code>infrared_send_test</code>, <code>infrared_recv_test</code></td>
+<td>IRremoteESP8266</td>
+</tr>
+<tr>
+<td>LEDs</td>
+<td>WS2812 example</td>
+<td>FastLED</td>
+</tr>
+<tr>
+<td>Battery</td>
+<td>BQ27220 / BQ25896</td>
+<td>XPowersLib</td>
+</tr>
+<tr>
+<td>Audio</td>
+<td>their audio example</td>
+<td>ESP32-audioI2S</td>
+</tr>
+</tbody>
+</table>
+<p>Band select on the CC1101 is GPIO 47 and 48 (<code>SW1</code>, <code>SW0</code>): 315, 434, or 868/915. Set the legal band for where you are before any transmit. <a href="01-hardware.html">Hardware</a>.</p>
+<p>Plus nRF24: start from Bruce's Plus pin header, not from a generic nRF24 tutorial. The original board only has nRF24 if you wired a module onto the expansion port, and those pins are different.</p>
+<h2>Settings that matter</h2>
+<pre><code class="language-ini">board = esp32-s3-devkitc-1
+board_build.arduino.memory_type = qio_opi
+board_upload.flash_size = 16MB
+build_flags =
+    -DBOARD_HAS_PSRAM
+    -DARDUINO_USB_MODE=1
+    -DARDUINO_USB_CDC_ON_BOOT=1
+</code></pre>
+<p>Without CDC-on-boot the board flashes and then never shows a port. Without PSRAM, LVGL and any real UI will not fit. Display column offset is 35; forget it and the text starts off the left edge.</p>
+<h2>ESP-IDF, if you outgrow Arduino</h2>
+<p>Sor3nt's Flipper port is ESP-IDF (they have used 5.4.1). Same chip flags: ESP32-S3, 16 MB, octal PSRAM. You still install the app image into a slot, not a full flash of <code>bootloader + partition + app</code>, unless you mean to replace the launcher.</p>
+<h2>Ship it to someone else</h2>
+<p>Tag a release. Attach <code>firmware.bin</code> and say which board (CC1101 or Plus) and which launcher slot it fits. Do not attach a merged image without saying it erases the launcher.</p></main></body></html>
