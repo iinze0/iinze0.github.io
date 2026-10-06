@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Multi-boot — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
-<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a><a href="08-buy.html">Buy</a><a href="11-antennas.html">Antennas</a>
 </nav></header><main><h1>Multiple firmware on one device</h1>
 <p>You flash a launcher once. The launcher owns the bootloader path, so a normal reset always returns to it. Each app is written into its own flash slot. The SD card holds the <code>.bin</code> you install from, plus whatever that app wants (captures, FAPs, IR files).</p>
 <pre><code class="language-text">power on
@@ -113,4 +113,4 @@
 <li>Do not flash a second launcher into a slot. A launcher expects to own <code>0x0</code> and the partition table. Inside a slot it either boot-loops or boots and then cannot see the other slots.</li>
 <li>Do not install a binary built for T-Embed (no CC1101), CYD, or M5Stack. Wrong display pins look like a black screen or a torn image.</li>
 <li>Do not format the card after installing if the app keeps its databases there. The flash slot will still boot; the app will look blank.</li>
-</ul></main></body></html>
+</ul><p class="stamp">Updated 6 October 2026, 20:00 CEST</p></main></body></html>

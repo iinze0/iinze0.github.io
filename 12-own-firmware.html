@@ -1,5 +1,5 @@
 <!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Your own firmware — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
-<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a>
+<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a><a href="08-buy.html">Buy</a><a href="11-antennas.html">Antennas</a>
 </nav></header><main><h1>Make your own firmware</h1>
 <p>You do not fork Bruce to blink the screen. A small PlatformIO app, built for this ESP32-S3, installs into a launcher slot the same way Bruce does. LilyGO's own examples live in <a href="https://github.com/Xinyuan-LilyGO/T-Embed-CC1101">Xinyuan-LilyGO/T-Embed-CC1101</a> and are the pin source of truth. This page is the path from an empty folder to a <code>.bin</code> in a slot.</p>
 <p>This is your board. The same legal line as the rest of the repo applies the moment the radio transmits: own hardware, own tags, own network. <a href="legal.html">LEGAL.md</a>.</p>
@@ -137,4 +137,4 @@ build_flags =
 <h2>ESP-IDF, if you outgrow Arduino</h2>
 <p>Sor3nt's Flipper port is ESP-IDF (they have used 5.4.1). Same chip flags: ESP32-S3, 16 MB, octal PSRAM. You still install the app image into a slot, not a full flash of <code>bootloader + partition + app</code>, unless you mean to replace the launcher.</p>
 <h2>Ship it to someone else</h2>
-<p>Tag a release. Attach <code>firmware.bin</code> and say which board (CC1101 or Plus) and which launcher slot it fits. Do not attach a merged image without saying it erases the launcher.</p></main></body></html>
+<p>Tag a release. Attach <code>firmware.bin</code> and say which board (CC1101 or Plus) and which launcher slot it fits. Do not attach a merged image without saying it erases the launcher.</p><p class="stamp">Updated 6 October 2026, 20:00 CEST</p></main></body></html>

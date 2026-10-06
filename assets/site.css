@@ -87,3 +87,5 @@ pre, code { font-family: ui-monospace, monospace; }
 pre { background: #100e0a; border: 1px solid var(--line); padding: 12px; overflow: auto; }
 a { color: var(--accent); }
 .toc a { color: var(--ink); text-decoration: none; display: block; padding: 8px 0; border-bottom: 1px solid var(--line); }
+
+.stamp { color: var(--muted); font: 12px ui-sans-serif, system-ui, sans-serif; margin-top: 28px; }
