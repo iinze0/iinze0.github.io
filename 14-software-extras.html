@@ -1,16 +1,36 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Software extras — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
-<a href="index.html">Home</a>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Software extras — T-Embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
+<nav class="sp">
 <a href="install.html">Install</a>
 <a href="remote.html">Remote</a>
 <a href="guide.html">Guide</a>
 <a href="14-software-extras.html" aria-current="page">Extras</a>
 <a href="15-finding-features.html">Find</a>
-<a href="08-buy.html">Buy</a>
-</nav></header><main>
-<p class="kicker">Software extras</p>
-<h1>Themes, scripts, and signal packs.</h1>
-<p class="lead">Everything lives on the FAT32 card. Most collections work on both Bruce and the Flipper-style port.</p>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="hero">
+<p class="label">Software extras</p>
+<h1>Themes, scripts, and signal packs.<br><span class="serif">Everything lives on the FAT32 card.</span></h1>
+<p>Most collections work on both Bruce and the Flipper-style port.</p>
+</section>
 
+<section class="card">
 <h2>Regional frequencies (Sub-GHz)</h2>
 <p>Your CC1101 covers roughly 300–348, 387–464, and 779–928 MHz. Transmit only on bands legal where you are.</p>
 <table>
@@ -21,7 +41,9 @@
 <tr><td><strong>Australia / NZ</strong></td><td>433.92 MHz (main), some 915 MHz</td><td>Most garage doors, gates, and car fobs. Similar to EU on 433.</td></tr>
 </tbody>
 </table>
+</section>
 
+<section class="dark">
 <h2>Bruce</h2>
 <h3>Themes</h3>
 <ul>
@@ -29,7 +51,6 @@
 <li>Apply: <strong>Config → UI Theme</strong> → select the <code>.json</code>.</li>
 <li>Sources: <a href="https://github.com/anonimoKali/Bruce-Themes">anonimoKali/Bruce-Themes</a>, <a href="https://github.com/Ghoststrats/GhostStrats-Bruce-Themes">Ghoststrats/GhostStrats-Bruce-Themes</a>.</li>
 </ul>
-
 <h3>Apps and scripts</h3>
 <ul>
 <li>Install App Store once: <strong>Config → Install App Store</strong> (needs Wi-Fi).</li>
@@ -37,18 +58,21 @@
 <li>Manual: <code>.js</code> files in <code>/BruceJS/&lt;Category&gt;/</code>.</li>
 </ul>
 <p>Packs: <a href="https://github.com/BruceDevices/firmware/tree/main/sd_files">Official sd_files</a> · <a href="https://bruce-hub.vercel.app/">Bruce Hub</a> · <a href="https://github.com/sloth632/Bruce-Scripts-Heaven">sloth632</a> · <a href="https://github.com/tebin623/Bruce-Scripts-Heaven">tebin623</a> · <a href="https://github.com/3xp-l01t/Bruce-Firmware-File-Pack">3xp-l01t</a></p>
+</section>
 
+<section class="card">
 <h2>Flipper-style port (Sor3nt)</h2>
 <p>The <code>.bin</code> alone boots an empty interface. You need the matching asset pack.</p>
-<ol>
+<ol class="steps">
 <li>Download the latest <code>sdcard.zip</code> from the project releases.</li>
 <li>Extract the <strong>contents</strong> to the root of a FAT32 card.</li>
 <li>Insert and reboot.</li>
 </ol>
 <p>Desktop companion: <a href="https://github.com/Sor3nt/qT-Embed">qT-Embed</a>.</p>
+</section>
 
+<section class="dark">
 <h2>Pre-recorded packs</h2>
-
 <h3>Master indexes</h3>
 <ul>
 <li><a href="https://github.com/djsime1/awesome-flipperzero">djsime1/awesome-flipperzero</a></li>
@@ -108,7 +132,9 @@
 <tr><td>Official <code>.fap</code> apps</td><td>No</td><td>No</td><td>ARM apps do not run</td></tr>
 </tbody>
 </table>
+</section>
 
-<p class="note">Only use signals and scripts on devices, remotes, tags, and networks you own or have permission to test. Respect local radio regulations. <a href="legal.html">Legal</a>.</p>
-<p class="stamp">Updated 13 October 2026</p>
-</main></body></html>
+<p class="stamp">Only use signals and scripts on devices, remotes, tags, and networks you own or have permission to test. Respect local radio regulations. <a href="legal.html">Legal</a>. Updated 13 October 2026.</p>
+</main>
+</body>
+</html>

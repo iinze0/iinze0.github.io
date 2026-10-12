@@ -1,16 +1,36 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Finding features — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
-<a href="index.html">Home</a>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Finding features — T-Embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
+<nav class="sp">
 <a href="install.html">Install</a>
 <a href="remote.html">Remote</a>
 <a href="guide.html">Guide</a>
 <a href="14-software-extras.html">Extras</a>
 <a href="15-finding-features.html" aria-current="page">Find</a>
-<a href="08-buy.html">Buy</a>
-</nav></header><main>
-<p class="kicker">Finding features</p>
-<h1>How to find anything.</h1>
-<p class="lead">Menu names change between versions. This is the usual layout on a T-Embed CC1101 Plus. When a name differs, look in the same group (radio, storage, settings).</p>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="hero">
+<p class="label">Finding features</p>
+<h1>How to find anything.<br><span class="serif">Menu names change between versions.</span></h1>
+<p>This is the usual layout on a T-Embed CC1101 Plus. When a name differs, look in the same group (radio, storage, settings).</p>
+</section>
 
+<section class="card">
 <h2>Bmorcelli Launcher</h2>
 <table>
 <thead><tr><th>Want</th><th>Where</th></tr></thead>
@@ -25,7 +45,9 @@
 </tbody>
 </table>
 <p>Normal reset returns to the launcher.</p>
+</section>
 
+<section class="dark">
 <h2>Bruce</h2>
 <table>
 <thead><tr><th>Want</th><th>Menu group</th><th>Typical items</th></tr></thead>
@@ -42,7 +64,9 @@
 <tr><td>Settings, themes, LEDs</td><td>Config</td><td>UI Theme, colours, startup app, Wi-Fi credentials</td></tr>
 </tbody>
 </table>
+</section>
 
+<section class="card">
 <h2>Flipper-style port (Sor3nt)</h2>
 <table>
 <thead><tr><th>Want</th><th>Where</th></tr></thead>
@@ -59,7 +83,9 @@
 </tbody>
 </table>
 <p>The Archive app is the place to browse saved files. Without the <code>sdcard.zip</code> contents most apps stay empty.</p>
+</section>
 
+<section class="dark">
 <h2>Common tasks</h2>
 <table>
 <thead><tr><th>Task</th><th>Bruce</th><th>Flipper port</th></tr></thead>
@@ -72,15 +98,21 @@
 <tr><td>Copy files to the card</td><td>Files, WebUI, or USB disk</td><td>Archive, Web filesystem, or USB storage</td></tr>
 </tbody>
 </table>
+</section>
 
+<section class="card">
 <h2>When you cannot find it</h2>
-<ol>
+<ol class="steps">
 <li>Check you are on the Plus binary if you are looking for nRF24.</li>
 <li>Confirm the SD card is mounted.</li>
 <li>Reboot after copying large packs.</li>
 <li>Look in Config / Settings for optional items.</li>
 <li>Check the project’s GitHub releases and Discord for version-specific changes.</li>
 </ol>
-<p class="note">Menu maps go out of date. The groups stay stable even when individual labels move.</p>
+<p class="tiny">Menu maps go out of date. The groups stay stable even when individual labels move.</p>
+</section>
+
 <p class="stamp">Updated 13 October 2026</p>
-</main></body></html>
+</main>
+</body>
+</html>
