@@ -3,6 +3,18 @@
 </nav></header><main><h1>Software extras</h1>
 <p>Themes, apps, libraries, and SD packs for Bruce and the Flipper-style port. Everything lives on the FAT32 card.</p>
 
+<h2>Regional frequencies (Sub-GHz)</h2>
+<p>Your T-Embed CC1101 covers roughly 300–348, 387–464, and 779–928 MHz. Transmit only on bands legal where you are.</p>
+<table>
+<thead><tr><th>Region</th><th>Common bands</th><th>Typical devices</th></tr></thead>
+<tbody>
+<tr><td><strong>EU / Europe</strong></td><td>433.92 MHz, 868 MHz</td><td>Garage doors, gates, doorbells, sensors, weather stations, older car fobs</td></tr>
+<tr><td><strong>US / North America</strong></td><td>315 MHz, 433.92 MHz, 915 MHz</td><td>Garage doors (Chamberlain/LiftMaster often 315), car fobs, sensors, some IoT</td></tr>
+<tr><td><strong>Australia / NZ</strong></td><td>433.92 MHz (main), some 915 MHz</td><td>Most garage doors, gates, and car fobs are 433.92 MHz. Similar to EU on 433.</td></tr>
+</tbody>
+</table>
+<p>Official Flipper region table (for reference): EU = 433.05–434.79 + 868.15–868.55 MHz. US/AU/NZ = 304.10–321.95 + 433.05–434.79 + 915–928 MHz.</p>
+
 <h2>Bruce</h2>
 <h3>Themes</h3>
 <ul>
@@ -21,7 +33,7 @@
 <p>Only run scripts whose source you can read.</p>
 <p>Bruce-specific packs:</p>
 <ul>
-<li><a href="https://github.com/BruceDevices/firmware/tree/main/sd_files">Official Bruce sd_files</a> (examples for IR, BadUSB, portals, themes)</li>
+<li><a href="https://github.com/BruceDevices/firmware/tree/main/sd_files">Official Bruce sd_files</a></li>
 <li><a href="https://github.com/sloth632/Bruce-Scripts-Heaven">sloth632/Bruce-Scripts-Heaven</a></li>
 <li><a href="https://github.com/tebin623/Bruce-Scripts-Heaven">tebin623/Bruce-Scripts-Heaven</a></li>
 <li><a href="https://github.com/3xp-l01t/Bruce-Firmware-File-Pack">3xp-l01t/Bruce-Firmware-File-Pack</a></li>
@@ -35,35 +47,56 @@
 <li>Extract <strong>the contents</strong> (not the zip folder itself) to the <strong>root</strong> of a FAT32 card.</li>
 <li>Insert the card and reboot.</li>
 </ol>
-<p>Extra things you can add: more BadUSB scripts in <code>/ext/badusb/</code>, custom dolphin animations, your own captures (Archive organises them).</p>
 <p>Desktop companion: <a href="https://github.com/Sor3nt/qT-Embed">qT-Embed</a>.</p>
 
 <h2>Pre-recorded community packs</h2>
-<p>These are the main collections of Sub-GHz <code>.sub</code> files, IR codes, BadUSB scripts, and NFC dumps. Most work on both firmwares.</p>
+<p>Most of these work on both firmwares. Drop <code>.sub</code> / <code>.ir</code> / BadUSB scripts on the card.</p>
 
-<h3>Master index</h3>
+<h3>Master indexes</h3>
 <ul>
-<li><a href="https://github.com/djsime1/awesome-flipperzero">djsime1/awesome-flipperzero</a> — best starting point for everything Flipper-related</li>
-<li><a href="https://github.com/SYOP200/Flipper-Zero-Downloads">SYOP200/Flipper-Zero-Downloads</a> — curated downloads</li>
+<li><a href="https://github.com/djsime1/awesome-flipperzero">djsime1/awesome-flipperzero</a> — best overall list</li>
+<li><a href="https://github.com/SYOP200/Flipper-Zero-Downloads">SYOP200/Flipper-Zero-Downloads</a></li>
+<li><a href="https://github.com/Ringmast4r/RF-Protocol-Database">Ringmast4r/RF-Protocol-Database</a> — protocol reference (425 protocols)</li>
 </ul>
 
-<h3>Sub-GHz (.sub files)</h3>
+<h3>Sub-GHz by region</h3>
+
+<p><strong>EU / Europe (mainly 433.92 + 868 MHz)</strong></p>
 <ul>
+<li>Most files in the big dumps below that are tagged 433.92 or 868</li>
+<li>Garage doors, gates, doorbells, sensors are overwhelmingly 433.92</li>
+<li><a href="https://github.com/OG34/flipper-signal-db">OG34/flipper-signal-db</a> has region tags (eu)</li>
+</ul>
+
+<p><strong>US / North America (315 / 433.92 / 915 MHz)</strong></p>
+<ul>
+<li>Look for 315 MHz files (many older Chamberlain / LiftMaster garage doors)</li>
+<li>915 MHz for some newer ISM devices</li>
+<li><a href="https://github.com/kakuzu-f0/Automotive-Sub-Ghz-Collection">kakuzu-f0/Automotive-Sub-Ghz-Collection</a> — organized by American / European / Asian</li>
+<li><a href="https://github.com/kakuzu-f0/Automotive-Sub-Ghz-Playlists">kakuzu-f0/Automotive-Sub-Ghz-Playlists</a></li>
+</ul>
+
+<p><strong>Australia / NZ (mainly 433.92 MHz)</strong></p>
+<ul>
+<li><a href="https://github.com/Jhoath994/flipper-zero-au-subghz">Jhoath994/flipper-zero-au-subghz</a> — dedicated AU 433.92 MHz research (car fobs, gates)</li>
+<li>Most EU 433.92 files also apply here</li>
+</ul>
+
+<p><strong>Large general collections (mixed regions)</strong></p>
+<ul>
+<li><a href="https://github.com/Zero-Sploit/FlipperZero-Subghz-DB">Zero-Sploit/FlipperZero-Subghz-DB</a> — largest (13k+ files)</li>
 <li><a href="https://github.com/UberGuidoZ/Flipper">UberGuidoZ/Flipper</a> — Sub-GHz folder</li>
-<li><a href="https://github.com/Zero-Sploit/FlipperZero-Subghz-DB">Zero-Sploit/FlipperZero-Subghz-DB</a> — largest single collection (13k+ files)</li>
 <li><a href="https://github.com/UberGuidoZ/Flipper-SGDB">UberGuidoZ/Flipper-SGDB</a></li>
 <li><a href="https://github.com/MuddledBox/FlipperZeroSub-GHz">MuddledBox/FlipperZeroSub-GHz</a></li>
 <li><a href="https://github.com/SHUR1K-N/Flipper-Zero-Sub-GHz-Jamming-Files">SHUR1K-N/Flipper-Zero-Sub-GHz-Jamming-Files</a></li>
-<li><a href="https://github.com/OG34/flipper-signal-db">OG34/flipper-signal-db</a> — browsable web interface</li>
-<li><a href="https://github.com/kakuzu-f0/Automotive-Sub-Ghz-Playlists">kakuzu-f0/Automotive-Sub-Ghz-Playlists</a> — vehicle signals</li>
-<li><a href="https://github.com/Jhoath994/flipper-zero-au-subghz">Jhoath994/flipper-zero-au-subghz</a> — Australian 433.92 MHz focused</li>
+<li><a href="https://github.com/OG34/flipper-signal-db">OG34/flipper-signal-db</a> — browsable + region filter</li>
 </ul>
 
 <h3>Infrared (IR)</h3>
 <ul>
 <li><a href="https://github.com/FlipperDevices/IRDB">FlipperDevices/IRDB</a> — official</li>
 <li><a href="https://github.com/Lucaslhm/Flipper-IRDB">Lucaslhm/Flipper-IRDB</a> — large community collection</li>
-<li>Bruce ships Universal_TV_Remotes and other examples in its <code>sd_files</code></li>
+<li>Bruce ships Universal_TV_Remotes in its <code>sd_files</code></li>
 </ul>
 
 <h3>BadUSB / Ducky scripts</h3>
@@ -82,7 +115,7 @@
 <h3>NFC / RFID (limited compatibility)</h3>
 <ul>
 <li><a href="https://github.com/neverfa11ing/FlipperAmiibosNFC">neverfa11ing/FlipperAmiibosNFC</a> — Amiibo dumps</li>
-<li><a href="https://github.com/w0lfzk1n/Flipper-Zero-NFC-Trolls">w0lfzk1n/Flipper-Zero-NFC-Trolls</a> — NFC troll links</li>
+<li><a href="https://github.com/w0lfzk1n/Flipper-Zero-NFC-Trolls">w0lfzk1n/Flipper-Zero-NFC-Trolls</a></li>
 </ul>
 
 <table>
@@ -98,10 +131,10 @@
 
 <p>How to add them:</p>
 <ol>
-<li>Download the folders or files you want from the repos above.</li>
+<li>Download the folders or files you want.</li>
 <li>Copy to the SD card (BadUSB → <code>/ext/badusb/</code> on Flipper port; <code>.sub</code> and <code>.ir</code> anywhere).</li>
-<li>Reboot and open the matching app (Sub-GHz, IR, Bad USB, Files / Archive, or Bruce Custom SubGhz / Custom IR).</li>
+<li>Reboot and open the matching app.</li>
 </ol>
-<p class="note">Only use signals and scripts on devices, remotes, tags, and networks you own or have permission to test.</p>
+<p class="note">Only use signals and scripts on devices, remotes, tags, and networks you own or have permission to test. Respect local radio regulations.</p>
 <p class="note">Legal reminder: own tags, own remotes, own networks. See <a href="legal.html">Legal</a>.</p>
 <p class="stamp">Updated 13 October 2026</p></main></body></html>
