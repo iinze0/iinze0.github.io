@@ -1,17 +1,36 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Remote — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
-<a href="index.html">Home</a>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Remote — T-Embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
+<nav class="sp">
 <a href="install.html">Install</a>
 <a href="remote.html" aria-current="page">Remote</a>
 <a href="guide.html">Guide</a>
 <a href="14-software-extras.html">Extras</a>
 <a href="15-finding-features.html">Find</a>
-<a href="08-buy.html">Buy</a>
-</nav></header><main>
-<p class="kicker">Your launcher, your phone</p>
-<h1>Remote control is a page the board serves.</h1>
-<p class="lead">This site cannot drive the encoder from the public internet. The launcher on the device opens a Wi-Fi page. Your phone joins that network, or the same LAN, and that page mirrors the 320×170 screen and injects the wheel and the side button. Flash the launcher first.</p>
-<section class="split">
-<div>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="hero">
+<p class="label">Your launcher, your phone</p>
+<h1>Remote control is a page the board serves.<br><span class="serif">Not this website.</span></h1>
+<p>This site cannot drive the encoder from the public internet. The launcher on the device opens a Wi-Fi page. Your phone joins that network, or the same LAN, and that page mirrors the 320×170 screen and injects the wheel and the side button. Flash the launcher first.</p>
+</section>
+
+<section class="card">
 <h2>loznoc dual-boot</h2>
 <ol class="steps">
 <li>Boot into the launcher. Open <strong>WiFi</strong>.</li>
@@ -21,29 +40,31 @@
 <li>To stay on your normal Wi-Fi, put that network in the NETWORK panel. It then answers at <code>http://tembed.local</code> as well as its address. Tick start-on-boot if you want it after reset.</li>
 <li>A .bin upload lands on the card. Install it on the device after. BACK leaves Wi-Fi up. Press turns Wi-Fi off.</li>
 </ol>
-<p><a class="go" href="http://192.168.4.1">Open 192.168.4.1</a> <a class="ghost" href="http://tembed.local">Open tembed.local</a></p>
-<p class="fine">Those open only if this phone is already on the launcher's network. Otherwise the browser will time out. That is expected.</p>
+<div class="cta">
+<a class="btn solid" href="http://192.168.4.1">Open 192.168.4.1</a>
+<a class="btn ghost" href="http://tembed.local">Open tembed.local</a>
 </div>
-<div class="pad">
-<p class="kicker">On-device remote</p>
-<div class="wheel">
-<span>left</span>
-<strong>ok</strong>
-<span>right</span>
-</div>
-<p class="fine">Side button is back. The live mirror is RGB565, up to 320×170, with a quality switch.</p>
-</div>
+<p class="tiny" style="margin-top:12px">Those open only if this phone is already on the launcher’s network. Otherwise the browser will time out. That is expected.</p>
 </section>
+
+<section class="dark">
 <h2>If you script it</h2>
-<p>Same phone, same network, the launcher's own HTTP. Not a public API.</p>
-<ul class="endpoints">
+<p>Same phone, same network, the launcher’s own HTTP. Not a public API.</p>
+<ul>
 <li><code>GET /fb?s=1..4</code> — raw RGB565, width and height in headers</li>
 <li><code>GET /key?k=left|right|ok|back</code></li>
-<li><code>GET /cm?cmnd=nav prev|next|sel|esc</code> — same names as Bruce's WebUI</li>
+<li><code>GET /cm?cmnd=nav prev|next|sel|esc</code> — same names as Bruce’s WebUI</li>
 <li><code>POST /bin</code> — firmware onto the card</li>
 <li><code>POST /theme</code> — theme pack</li>
 </ul>
+</section>
+
+<section class="card">
 <h2>bmorcelli Launcher</h2>
 <p>Main menu → <strong>WUI</strong>. Same idea: a page on the device for files and control, plus the catalog under <strong>OTA</strong>. The flasher is on the <a href="install.html">install page</a>.</p>
-<p class="note">Remote means your board. It is not a way onto someone else's launcher, and the endpoints are not a pentest tool. <a href="legal.html">Legal</a>.</p>
-<p class="stamp">Updated 13 October 2026</p></main></body></html>
+</section>
+
+<p class="stamp">Remote means your board. It is not a way onto someone else’s launcher. <a href="legal.html">Legal</a>. Updated 13 October 2026.</p>
+</main>
+</body>
+</html>
