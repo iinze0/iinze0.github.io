@@ -19,6 +19,12 @@
 <li>Manual install: put <code>.js</code> files in <code>/BruceJS/&lt;Category&gt;/</code>.</li>
 </ul>
 <p>Only run scripts whose source you can read.</p>
+<p>Bruce-specific script packs:</p>
+<ul>
+<li><a href="https://github.com/sloth632/Bruce-Scripts-Heaven">sloth632/Bruce-Scripts-Heaven</a></li>
+<li><a href="https://github.com/tebin623/Bruce-Scripts-Heaven">tebin623/Bruce-Scripts-Heaven</a></li>
+<li><a href="https://github.com/3xp-l01t/Bruce-Firmware-File-Pack">3xp-l01t/Bruce-Firmware-File-Pack</a></li>
+</ul>
 
 <h3>Libraries and captures</h3>
 <ul>
@@ -38,16 +44,40 @@
 <p>Extra things you can add: more BadUSB scripts in <code>/ext/badusb/</code>, custom dolphin animations, your own captures (Archive organises them).</p>
 <p>Desktop companion: <a href="https://github.com/Sor3nt/qT-Embed">qT-Embed</a>.</p>
 
-<h2>Community packs (UberGuidoZ and similar)</h2>
-<p>Large Flipper Zero community repositories contain BadUSB scripts, Sub-GHz <code>.sub</code> files, IR codes, and more. Most of the useful files work on the T-Embed.</p>
-<p><strong>Main source:</strong> <a href="https://github.com/UberGuidoZ/Flipper">UberGuidoZ/Flipper</a></p>
+<h2>Pre-recorded community packs</h2>
+<p>These are the main collections of Sub-GHz <code>.sub</code> files, IR codes, and BadUSB scripts. Most work on both firmwares (drop <code>.sub</code> / <code>.ir</code> / BadUSB scripts onto the card).</p>
+
+<h3>Sub-GHz (.sub files)</h3>
+<ul>
+<li><a href="https://github.com/UberGuidoZ/Flipper">UberGuidoZ/Flipper</a> — Sub-GHz folder (doorbells, sensors, vehicles, misc)</li>
+<li><a href="https://github.com/Zero-Sploit/FlipperZero-Subghz-DB">Zero-Sploit/FlipperZero-Subghz-DB</a> — largest single collection (13k+ files)</li>
+<li><a href="https://github.com/UberGuidoZ/Flipper-SGDB">UberGuidoZ/Flipper-SGDB</a></li>
+<li><a href="https://github.com/MuddledBox/FlipperZeroSub-GHz">MuddledBox/FlipperZeroSub-GHz</a></li>
+<li><a href="https://github.com/SHUR1K-N/Flipper-Zero-Sub-GHz-Jamming-Files">SHUR1K-N/Flipper-Zero-Sub-GHz-Jamming-Files</a></li>
+<li><a href="https://github.com/OG34/flipper-signal-db">OG34/flipper-signal-db</a> — browsable web interface</li>
+</ul>
+
+<h3>Infrared (IR)</h3>
+<ul>
+<li><a href="https://github.com/FlipperDevices/IRDB">FlipperDevices/IRDB</a> — official</li>
+<li><a href="https://github.com/Lucaslhm/Flipper-IRDB">Lucaslhm/Flipper-IRDB</a> — large community collection</li>
+<li>Bruce ships Universal_TV_Remotes and other examples in its <code>sd_files</code></li>
+</ul>
+
+<h3>BadUSB / Ducky scripts</h3>
+<ul>
+<li><a href="https://github.com/UberGuidoZ/Flipper/tree/main/BadUSB">UberGuidoZ/Flipper — BadUSB</a></li>
+<li><a href="https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB">I-Am-Jakoby/Flipper-Zero-BadUSB</a></li>
+<li><a href="https://github.com/beigeworm/BadUSB-Files-For-FlipperZero">beigeworm/BadUSB-Files-For-FlipperZero</a></li>
+<li>FalsePhilosopher collections (linked from UberGuidoZ BadUSB)</li>
+</ul>
 
 <table>
 <thead><tr><th>Content</th><th>Flipper port</th><th>Bruce</th><th>Where to put it</th></tr></thead>
 <tbody>
 <tr><td>BadUSB / Ducky scripts (<code>.txt</code>)</td><td>Yes</td><td>Yes</td><td>Flipper: <code>/ext/badusb/</code> · Bruce: BadUSB folder or Files</td></tr>
-<tr><td>Sub-GHz <code>.sub</code> files</td><td>Yes (most raw)</td><td>Yes</td><td>Any folder; open from Sub-GHz / RF menu</td></tr>
-<tr><td>IR files</td><td>Often</td><td>Often</td><td>Try infrared folder or open via Archive / Files</td></tr>
+<tr><td>Sub-GHz <code>.sub</code> files</td><td>Yes (most raw)</td><td>Yes</td><td>Any folder; open from Sub-GHz / RF / Custom SubGhz</td></tr>
+<tr><td>IR files</td><td>Often</td><td>Often</td><td>infrared folder or open via Archive / Files / Custom IR</td></tr>
 <tr><td>Official Flipper <code>.fap</code> apps</td><td>No</td><td>No</td><td>ARM apps do not run on ESP32</td></tr>
 <tr><td>NFC dumps</td><td>Limited</td><td>Limited</td><td>Format support differs</td></tr>
 </tbody>
@@ -55,11 +85,10 @@
 
 <p>How to add them:</p>
 <ol>
-<li>Download the folders or files you want.</li>
-<li>Copy to the SD card (BadUSB → <code>/ext/badusb/</code>, <code>.sub</code> files → any folder).</li>
-<li>Reboot and open the matching app.</li>
+<li>Download the folders or files you want from the repos above.</li>
+<li>Copy to the SD card (BadUSB → <code>/ext/badusb/</code> on Flipper port; <code>.sub</code> and <code>.ir</code> anywhere).</li>
+<li>Reboot and open the matching app (Sub-GHz, IR, Bad USB, Files / Archive, or Bruce Custom SubGhz / Custom IR).</li>
 </ol>
-<p>Other useful collections: large Sub-GHz databases, official IRDB.</p>
 <p class="note">Only use signals and scripts on devices, remotes, tags, and networks you own or have permission to test.</p>
 <p class="note">Legal reminder: own tags, own remotes, own networks. See <a href="legal.html">Legal</a>.</p>
 <p class="stamp">Updated 13 October 2026</p></main></body></html>
