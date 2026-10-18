@@ -1,56 +1,40 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Limits — T-Embed</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="bar"><a class="mark" href="index.html">T-Embed</a><nav>
-<a href="index.html">Home</a><a href="install.html">Install</a><a href="remote.html">Remote</a><a href="guide.html">Guide</a><a href="08-buy.html">Buy</a><a href="11-antennas.html">Antennas</a>
-</nav></header><main><h1>What the firmware can do, and where the line is</h1>
-<p>Bruce, Willy and the Flipper-style port ship menus in these groups. Names only. No procedure.</p>
-<table>
-<thead>
-<tr>
-<th>Group</th>
-<th>On this hardware</th>
-<th>Legal use</th>
-<th>Not legal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Sub-GHz (CC1101)</td>
-<td>Both boards. 433.92 and 868 in Norway</td>
-<td>Sniff and replay your own remotes, your own lab TX</td>
-<td>Someone else's fob, gate, car, alarm, sensor</td>
-</tr>
-<tr>
-<td>nRF24</td>
-<td>Plus only, and only on a Plus build</td>
-<td>Two modules you own</td>
-<td>A neighbour's link, a mouse/keyboard you do not own</td>
-</tr>
-<tr>
-<td>NFC (PN532)</td>
-<td>Both. 13.56 MHz ISO14443, not 125 kHz, not ISO15693</td>
-<td>Tags you bought, cards issued to you</td>
-<td>A badge, hotel card, or payment card that is not yours to copy</td>
-</tr>
-<tr>
-<td>IR</td>
-<td>Both</td>
-<td>Your own TV and AC units</td>
-<td>Not a crime in itself; still do not blind a sensor you do not own</td>
-</tr>
-<tr>
-<td>Wi-Fi / BLE</td>
-<td>Both, the ESP32-S3 radio</td>
-<td>AP and clients you control, isolated</td>
-<td>Deauth, evil twin, portals, handshake capture on a network you do not administer</td>
-</tr>
-<tr>
-<td>USB HID</td>
-<td>Both, when that app enables it</td>
-<td>A machine you own, payload you wrote</td>
-<td>A locked workstation that is not yours</td>
-</tr>
-</tbody>
-</table>
-<p>Rolling-code remotes (many cars, some gates) are designed so a captured frame does not open the next time. Bypassing that is the same offence as opening the lock, not a radio experiment.</p>
-<p>Jamming is not a feature this guide will configure. Continuous carrier on 433 or 868 is interference under the radio rules even before a door fails.</p>
-<p>Saved captures on the microSD are the thing a search finds. Treat the card like a notebook with your name on it.</p>
-<p>Penalties and the sections they sit under are in <a href="legal.html">LEGAL.md</a>. Read that before the first transmit, not after.</p><p class="stamp">Updated 6 October 2026, 20:00 CEST</p></main></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Capabilities and limits — T-Embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
+<nav class="sp">
+<a href="install.html">Install</a>
+<a href="remote.html">Remote</a>
+<a href="guide.html">Guide</a>
+<a href="14-software-extras.html">Extras</a>
+<a href="15-finding-features.html">Find</a>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<h1>Capabilities and limits</h1>
+<p>What the hardware can do, and what it cannot.</p>
+<ul>
+<li>CC1101 covers the usual ISM bands. Transmit only where legal.</li>
+<li>nRF24 is Plus only.</li>
+<li>Official Flipper .fap apps do not run. They are ARM.</li>
+<li>Rolling-code systems usually cannot be saved and replayed on stock firmware.</li>
+<li>Range is short without a proper antenna.</li>
+</ul>
+<p>See <a href="legal.html">legal</a>.</p>
+<p class="stamp">Updated 13 October 2026</p>
+</main>
+</body>
+</html>
