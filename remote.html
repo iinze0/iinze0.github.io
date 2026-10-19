@@ -27,44 +27,80 @@
 <section class="hero">
 <p class="label">Your launcher, your phone</p>
 <h1>Remote control is a page the board serves.<br><span class="serif">Not this website.</span></h1>
-<p>This site cannot drive the encoder from the public internet. The launcher on the device opens a Wi-Fi page. Your phone joins that network, or the same LAN, and that page mirrors the 320×170 screen and injects the wheel and the side button. Flash the launcher first.</p>
+<p>This site cannot drive the encoder from the public internet. The firmware on the device opens a Wi-Fi page. Your phone joins that network (or the same LAN) and that page mirrors the 320×170 screen and injects the wheel and the side button. Flash the launcher or app first.</p>
 </section>
 
 <section class="card">
 <h2>loznoc dual-boot</h2>
+<p>Best remote for this board. Full screen mirror + wheel control + file upload.</p>
 <ol class="steps">
 <li>Boot into the launcher. Open <strong>WiFi</strong>.</li>
 <li>First run is a hotspot. The screen shows the name <code>T-Embed-XXXX</code>, password <code>dualboot</code>, and <code>http://192.168.4.1</code>.</li>
 <li>Join it from the phone. Open that address. PIN first if you set one. The lock screen is not exposed on the network.</li>
-<li><strong>SCREEN</strong> is the framebuffer. <strong>REMOTE</strong> is left, right, ok, and back — the same events as the wheel and the side button.</li>
+<li><strong>SCREEN</strong> is the live framebuffer. <strong>REMOTE</strong> is left, right, ok, and back — the same events as the wheel and the side button.</li>
 <li>To stay on your normal Wi-Fi, put that network in the NETWORK panel. It then answers at <code>http://tembed.local</code> as well as its address. Tick start-on-boot if you want it after reset.</li>
-<li>A .bin upload lands on the card. Install it on the device after. BACK leaves Wi-Fi up. Press turns Wi-Fi off.</li>
+<li>Upload a .bin (lands on the card — install it on the device after) or a theme pack. BACK leaves Wi-Fi up. Press turns Wi-Fi off.</li>
 </ol>
 <div class="cta">
 <a class="btn solid" href="http://192.168.4.1">Open 192.168.4.1</a>
 <a class="btn ghost" href="http://tembed.local">Open tembed.local</a>
 </div>
 <p class="tiny" style="margin-top:12px">Those open only if this phone is already on the launcher’s network. Otherwise the browser will time out. That is expected.</p>
+<p class="tiny">Scriptable endpoints (same network only): <code>GET /fb?s=1..4</code> (raw RGB565), <code>GET /key?k=left|right|ok|back</code>, <code>GET /cm?cmnd=nav prev|next|sel|esc</code>, <code>POST /bin</code>, <code>POST /theme</code>.</p>
 </section>
 
 <section class="dark">
-<h2>If you script it</h2>
-<p>Same phone, same network, the launcher’s own HTTP. Not a public API.</p>
-<ul>
-<li><code>GET /fb?s=1..4</code> — raw RGB565, width and height in headers</li>
-<li><code>GET /key?k=left|right|ok|back</code></li>
-<li><code>GET /cm?cmnd=nav prev|next|sel|esc</code> — same names as Bruce’s WebUI</li>
-<li><code>POST /bin</code> — firmware onto the card</li>
-<li><code>POST /theme</code> — theme pack</li>
-</ul>
+<h2>bmorcelli Launcher</h2>
+<p>Web User Interface for files, OTA, and partition tools. No full screen mirror, but strong file and install control.</p>
+<ol class="steps">
+<li>Boot into the launcher. Open <strong>WUI</strong>.</li>
+<li>The screen shows the IP (or <code>http://launcher.local</code> on some builds). Default login is often <code>admin</code> / <code>launcher</code>.</li>
+<li>From the browser you can browse the SD card, upload files or folders, download, delete, rename, and install a .bin already on the card.</li>
+<li>OTA tab lets you upload and install firmware directly. Partitions tab matches the on-device PMan tools.</li>
+<li>Config lets you change Wi-Fi, WebUI password, and other settings.</li>
+</ol>
+<p>The flasher is on the <a href="install.html">install page</a>. See the <a href="https://github.com/bmorcelli/Launcher/wiki">Launcher wiki</a> for the full WebUI layout.</p>
 </section>
 
 <section class="card">
-<h2>bmorcelli Launcher</h2>
-<p>Main menu → <strong>WUI</strong>. Same idea: a page on the device for files and control, plus the catalog under <strong>OTA</strong>. The flasher is on the <a href="install.html">install page</a>.</p>
+<h2>Bruce</h2>
+<p>Bruce has its own WebUI with a Navigator for screen control and file management. Works when Bruce is running (alone or in a slot).</p>
+<ol class="steps">
+<li>In Bruce: <strong>Files → WebUI</strong>.</li>
+<li>Choose <strong>My Network</strong> (join your Wi-Fi) or <strong>AP Mode</strong> (device creates a hotspot).</li>
+<li>Open <code>http://bruce.local</code> or the IP shown on screen. Default credentials are often <code>admin</code> / <code>bruce</code>.</li>
+<li>The <strong>Navigator</strong> button shows a live view and on-screen buttons for navigation, select, long press, and back.</li>
+<li>You can also browse SD / LittleFS, upload, download, run .ir / .sub / .js files, and send serial commands.</li>
+</ol>
+<p>Docs: <a href="https://wiki.bruce.computer/controlling-device/webui/">Bruce WebUI wiki</a>.</p>
 </section>
 
-<p class="stamp">Remote means your board. It is not a way onto someone else’s launcher. <a href="legal.html">Legal</a>. Updated 13 October 2026.</p>
+<section class="dark">
+<h2>Flipper-style port and others</h2>
+<p>The Sor3nt Flipper ESP32 port and most other slot apps do not ship a full remote page of their own.</p>
+<ul>
+<li>Use the launcher remote (loznoc or bmorcelli) to manage files and switch slots.</li>
+<li>Once inside the app, control is on the device itself.</li>
+<li>Some ports expose a simple web file browser if you enable it in their settings.</li>
+<li>For Bruce inside a slot, use Bruce’s own WebUI as above.</li>
+</ul>
+<p>If an app has no remote, the launcher is still the way to drop files onto the card and reboot into the right slot.</p>
+</section>
+
+<section class="card">
+<h2>Quick comparison</h2>
+<table>
+<thead><tr><th>Firmware</th><th>Screen mirror</th><th>Wheel / button control</th><th>File upload</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>loznoc dual-boot</td><td>Yes (full)</td><td>Yes</td><td>Yes</td><td>Best remote for this board</td></tr>
+<tr><td>bmorcelli Launcher</td><td>No</td><td>No</td><td>Yes</td><td>Strong file + OTA + partition tools</td></tr>
+<tr><td>Bruce</td><td>Yes (Navigator)</td><td>Yes (buttons)</td><td>Yes</td><td>Works alone or in a slot</td></tr>
+<tr><td>Flipper port / others</td><td>Usually no</td><td>No</td><td>Limited</td><td>Use the launcher for files</td></tr>
+</tbody>
+</table>
+</section>
+
+<p class="stamp">Remote means your board. It is not a way onto someone else’s launcher. <a href="legal.html">Legal</a>. Updated 19 October 2026.</p>
 </main>
 </body>
 </html>
