@@ -8,9 +8,17 @@
 <meta name="description" content="T-Embed guide and Keylab keyboard configurator.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
-  :root { color-scheme: dark; }
+  :root {
+    --bg: #0a0a0c;
+    --card: #141418;
+    --border: #2a2a32;
+    --text: #f0f0f2;
+    --muted: #8a8a96;
+    --accent: #f5c518;
+    --accent-dim: #c9a012;
+  }
   * { box-sizing: border-box; }
   body {
     margin: 0;
@@ -20,51 +28,143 @@
     align-items: center;
     justify-content: center;
     font-family: 'Instrument Sans', system-ui, sans-serif;
-    background: #0e0e11;
-    color: #eee;
-    padding: 24px;
+    background: var(--bg);
+    color: var(--text);
+    padding: 40px 20px;
+    position: relative;
+    overflow: hidden;
   }
-  h1 { font-size: 1.1rem; font-weight: 500; letter-spacing: 0.04em; color: #888; margin: 0 0 32px; }
+  body::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -20%, rgba(245,197,24,0.08), transparent),
+      radial-gradient(ellipse 60% 40% at 100% 100%, rgba(100,100,255,0.04), transparent);
+    pointer-events: none;
+  }
+  .wrap {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    max-width: 720px;
+    text-align: center;
+  }
+  .mark {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+  }
+  .mark-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 12px var(--accent);
+  }
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .sub {
+    margin: 6px 0 40px;
+    color: var(--muted);
+    font-size: 0.95rem;
+  }
   .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 16px;
-    width: 100%;
-    max-width: 640px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
   }
   a.card {
-    display: block;
-    padding: 28px 24px;
-    border-radius: 16px;
-    background: #16161a;
-    border: 1px solid #2a2a30;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    padding: 32px 28px;
+    border-radius: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
     color: inherit;
     text-decoration: none;
-    transition: border-color .15s, transform .15s;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  a.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity .2s;
   }
   a.card:hover {
-    border-color: #f5c518;
-    transform: translateY(-2px);
+    border-color: #3a3a44;
+    transform: translateY(-4px);
+    box-shadow: 0 16px 40px rgba(0,0,0,0.4);
   }
-  a.card h2 { margin: 0 0 8px; font-size: 1.35rem; font-weight: 600; }
-  a.card p { margin: 0; color: #999; font-size: 0.95rem; line-height: 1.45; }
-  .accent { color: #f5c518; }
-  footer { margin-top: 48px; font-size: 0.8rem; color: #555; }
-  footer a { color: #777; }
+  a.card:hover::before { opacity: 1; }
+  .tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  a.card h2 {
+    margin: 0 0 10px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  a.card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  .arrow {
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+  footer {
+    margin-top: 56px;
+    font-size: 0.8rem;
+    color: #555;
+  }
+  footer a { color: #777; text-decoration: none; }
+  footer a:hover { color: var(--accent); }
 </style>
 </head>
 <body>
-  <h1>iinze0</h1>
-  <div class="cards">
-    <a class="card" href="tembed/">
-      <h2>T-Embed</h2>
-      <p>Guide for the LilyGO T-Embed CC1101 and Plus. Install, remote, antennas, firmware.</p>
-    </a>
-    <a class="card" href="keylab/">
-      <h2>Keylab <span class="accent">·</span></h2>
-      <p>Configure Attack Shark, Akko, Epomaker and other ROYUAN keyboards in the browser.</p>
-    </a>
+  <div class="wrap">
+    <div class="mark"><span class="mark-dot"></span><h1>iinze0</h1></div>
+    <p class="sub">Choose a project</p>
+    <div class="cards">
+      <a class="card" href="tembed/">
+        <span class="tag">Hardware</span>
+        <h2>T-Embed</h2>
+        <p>Guide for the LilyGO T-Embed CC1101 and Plus. Install, remote, antennas, firmware.</p>
+        <span class="arrow">Open guide →</span>
+      </a>
+      <a class="card" href="keylab/">
+        <span class="tag">Software</span>
+        <h2>Keylab</h2>
+        <p>Configure Attack Shark, Akko, Epomaker and other ROYUAN keyboards in the browser.</p>
+        <span class="arrow">Open configurator →</span>
+      </a>
+    </div>
+    <footer>Finland · <a href="https://github.com/iinze0">GitHub</a></footer>
   </div>
-  <footer>Finland · <a href="https://github.com/iinze0">GitHub</a></footer>
 </body>
 </html>
