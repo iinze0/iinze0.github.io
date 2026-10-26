@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Frequencies — T-Embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
+<nav class="sp">
+<a href="setup.html">Setup</a>
+<a href="install.html">Install</a>
+<a href="remote.html">Remote</a>
+<a href="guide.html">Guide</a>
+<a href="14-software-extras.html">Extras</a>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="hero">
+<p class="label">Bands</p>
+<h1>Frequencies by region.<br><span class="serif">Set the band before you transmit.</span></h1>
+<p>The CC1101 covers roughly 300–348, 387–464, and 779–928 MHz. Transmit only where legal. The antenna must match the band.</p>
+</section>
+
+<section class="card">
+<table>
+<thead><tr><th>Region</th><th>Primary bands</th><th>Notes</th></tr></thead>
+<tbody>
+<tr><td>Europe / UK / Norway / EEA</td><td>433.92 MHz, 868 MHz</td><td>Duty cycle limits apply on 868. 915 is not the EU plan.</td></tr>
+<tr><td>USA / Canada</td><td>315 MHz, 433.92 MHz, 915 MHz</td><td>915 is the usual Sub-GHz choice.</td></tr>
+<tr><td>Australia / New Zealand</td><td>433.92 MHz</td><td>915 plan exists; confirm local rules.</td></tr>
+</tbody>
+</table>
+</section>
+
+<section class="dark">
+<h2>Antenna matching</h2>
+<ul>
+<li>One whip = one band.</li>
+<li>SMA male into the shell’s SMA female. RP-SMA does not connect.</li>
+<li>External antenna (K268-01) lets you swap whips. Internal is pocket-friendly but harder to change.</li>
+</ul>
+<p>See also <a href="11-antennas.html">antennas</a> and <a href="01-hardware.html">hardware</a>.</p>
+</section>
+
+<p class="stamp">Own hardware only. Transmitting outside the legal plan is an administrative offence even if no one’s door opens. Updated 26 October 2026.</p>
+</main>
+</body>
+</html>
