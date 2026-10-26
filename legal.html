@@ -15,46 +15,60 @@
 <div class="wrap nav">
 <a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
 <nav class="sp">
+<a href="setup.html">Setup</a>
 <a href="install.html">Install</a>
 <a href="remote.html">Remote</a>
 <a href="guide.html">Guide</a>
-<a href="14-software-extras.html">Extras</a>
-<a href="15-finding-features.html">Find</a>
+<a href="legal.html" aria-current="page">Legal</a>
 </nav>
 </div>
 </header>
 <main class="wrap">
-<h1>Read this before you flash anything</h1>
-<p>This repository is a hardware and install guide for the LilyGO T-Embed CC1101 and T-Embed CC1101 Plus. It is not a pentest playbook, and it will not grow one.</p>
-<p>Bruce, Willy, Flipper-style ports, Marauder-style builds and similar firmware expose menus for Sub-GHz, NFC, infrared, Wi-Fi, Bluetooth and USB. Those menus are legal to study on equipment and networks you own, or where the owner has given you written permission. The same button is a crime when the target is someone else's.</p>
-<p>A disclaimer in a repo does not make the act legal. "For educational purposes" is not a defence in a Norwegian court.</p>
-<h2>What this repo will not contain</h2>
-<p>No capture/replay steps, no rolling-code bypass, no gate or car-fob opening, no NFC clone of an access card you were not issued, no deauth, evil twin, portal or handshake guide, no jammer settings, no BadUSB payload that types itself into a machine you do not own. Those are methods for unauthorised access. They are not added behind a warning banner.</p>
-<p>Official firmware projects already document their own menus. Use those, on your own lab.</p>
-<h2>What can happen if you use it on something that is not yours</h2>
-<p>Norway, Penal Code (straffeloven) chapter 21. Unofficial English text is on Lovdata; the Norwegian text wins.</p>
-<ul>
-<li>Section 204, intrusion into a computer system by bypassing a protection or other illicit means: fine or up to 2 years. A Wi-Fi network, a badge reader, a car immobiliser and a gate controller are computer systems.</li>
-<li>Section 205, violation of the protection of a computer system, including interfering with its operation: fine or up to 2 years. Jamming a fob, deauthing clients, or locking a reader fits here more often than people expect.</li>
-<li>Section 201, producing or possessing passwords, or a program particularly suitable for crimes against computer systems, with intent to commit a criminal act: fine or up to 1 year. A saved replay of someone else's fob, or a cloned UID kept to get through a door, is authentication material.</li>
-<li>Section 202, using another person's identity to gain or to cause loss: fine or up to 2 years. A cloned work badge is this as well as 204.</li>
-<li>Section 205 on secret interception of communications you are not part of: fine or up to 2 years. Recording someone else's remote or radio link can be argued here.</li>
-<li>Section 321 and 322, theft and aggravated theft, if the point of the clone or replay was to take a car, a bike, or anything else. Aggravated theft goes well past the cyber sections.</li>
-<li>Section 351, fraud, if access was used to obtain a service or money.</li>
-<li>Section 330 and around, vandalism, if a jam or a bad write bricked a lock, a car, or a reader.</li>
-</ul>
-<p>Ekomloven and NKOM rules sit on top of that. Transmitting outside the ISM plan, over power, or as interference is an administrative case and a fine even when nobody's door opened. 915 MHz is not a Norwegian plan. Duty cycle on 868 still applies on a lab bench if the antenna is radiating.</p>
-<p>Courts have already sent people to prison for unauthorised access alone. In HR-2026-1908-A the Supreme Court set 120 days for a run of account intrusions under section 204, with no theft of money. A gate or a car is not treated more kindly than a Snapchat account.</p>
-<p>Aggravating facts that move a case from a fine to custody: more than one victim, a repeated pattern, anything saved to the SD card, selling a clone, doing it at a workplace, or doing it near a car. The SD card and the flash are the evidence. Deleting the file after does not wipe the wear-levelled copy.</p>
-<p>Outside Norway the same acts are usually unauthorised-access, interception, and computer-misuse offences (CFAA in the US, Computer Misuse Act in the UK, national cybercrime laws elsewhere). Customs can also seize the device.</p>
-<h2>What is actually fine</h2>
+<section class="hero">
+<p class="label">Worldwide</p>
+<h1>Own hardware only.<br><span class="serif">The same acts are illegal almost everywhere.</span></h1>
+<p>This is a hardware and install guide. It is not a pentest playbook. A disclaimer does not make an act legal.</p>
+</section>
+
+<section class="card">
+<h2>What is fine</h2>
 <ul>
 <li>Flashing your own board.</li>
 <li>Reading and writing tags you bought.</li>
-<li>Capturing remotes you own, then replaying them at your own gate.</li>
-<li>Wi-Fi and BLE tests on an AP you control, isolated from neighbours.</li>
+<li>Capturing remotes you own, then replaying them at your own gate or door.</li>
+<li>Wi-Fi and BLE tests on an access point you control, isolated from neighbours.</li>
+<li>IR against your own TV or devices.</li>
+<li>nRF24 between modules you own.</li>
 </ul>
-<p class="stamp">Updated 13 October 2026</p>
+<p>If you cannot point at the owner and the permission, do not press transmit.</p>
+</section>
+
+<section class="dark">
+<h2>What is not fine</h2>
+<p>Using these tools on someone else’s property, network, badge, car, gate, or device without clear permission is unauthorised access, interception, or computer misuse in almost every country. Common examples:</p>
+<ul>
+<li><strong>United States</strong> — Computer Fraud and Abuse Act (CFAA). Unauthorised access or exceeding authorised access to a computer system. Fines and prison. A Wi-Fi network, badge reader, car immobiliser, or gate controller counts.</li>
+<li><strong>United Kingdom</strong> — Computer Misuse Act 1990. Unauthorised access, unauthorised access with intent, and unauthorised acts with intent to impair. Prison possible.</li>
+<li><strong>European Union / EEA</strong> — National laws implementing the EU Cybercrime Directive and Budapest Convention. Unauthorised access, interception, and data interference are criminal offences. Penalties vary by country.</li>
+<li><strong>Canada</strong> — Criminal Code sections on unauthorised use of a computer and mischief in relation to data. Fines and prison.</li>
+<li><strong>Australia</strong> — Criminal Code Act 1995 (Division 477). Unauthorised access, modification, or impairment of data. Serious penalties.</li>
+<li><strong>Norway</strong> — Penal Code (straffeloven) chapter 21, sections 201–205. Unauthorised access, interference, and related offences. Courts have given prison for access alone (example: HR-2026-1908-A, 120 days).</li>
+<li><strong>Most other countries</strong> — Equivalent unauthorised-access, interception, and computer-misuse laws. Customs can also seize the device.</li>
+</ul>
+<p>Aggravating factors that often raise the penalty: more than one victim, a repeated pattern, anything saved to the SD card, selling a clone, doing it at a workplace, or doing it near a vehicle. The SD card and flash are evidence. Deleting a file does not erase the wear-levelled copy.</p>
+</section>
+
+<section class="card">
+<h2>Radio rules</h2>
+<p>Transmitting outside the legal ISM plan for your country, over power, or as harmful interference is an administrative offence (and sometimes a crime) even if no door opens. Duty-cycle limits apply on many bands. 915 MHz is not an EU plan. Set the band correctly before any transmit. See <a href="16-frequencies.html">frequencies</a>.</p>
+</section>
+
+<section class="dark">
+<h2>What this guide will not contain</h2>
+<p>No capture/replay steps for systems you do not own, no rolling-code bypass, no gate or car-fob opening of someone else’s property, no NFC clone of an access card you were not issued, no deauth, evil twin, portal or handshake guide, no jammer settings, no BadUSB payload that types itself into a machine you do not own. Those are methods for unauthorised access. Official firmware projects document their own menus. Use those on your own lab.</p>
+</section>
+
+<p class="stamp">This is not legal advice. Laws change and enforcement differs. If a case is already open, talk to a lawyer. Updated 26 October 2026.</p>
 </main>
 </body>
 </html>
