@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="color-scheme" content="dark">
+<title>Setup — T-Embed</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header>
+<div class="wrap nav">
+<a class="brand" href="index.html"><span class="dot"></span>T-Embed</a>
+<nav class="sp">
+<a href="setup.html" aria-current="page">Setup</a>
+<a href="install.html">Install</a>
+<a href="remote.html">Remote</a>
+<a href="guide.html">Guide</a>
+<a href="14-software-extras.html">Extras</a>
+</nav>
+</div>
+</header>
+<main class="wrap">
+<section class="hero">
+<p class="label">Start here</p>
+<h1>Full setup, in order.<br><span class="serif">Do this once.</span></h1>
+<p>Follow these steps. Everything else is optional after this.</p>
+</section>
+
+<section class="card">
+<ol class="steps">
+<li><strong>Read the rules.</strong> Own hardware only. <a href="legal.html">Legal</a>.</li>
+<li><strong>Know your board.</strong> Plus has the nRF24. External antenna (K268-01) is easier to swap. <a href="01-hardware.html">Hardware</a> · <a href="08-buy.html">Buy</a>.</li>
+<li><strong>Prepare the card.</strong> FAT32, 8–32 GB. Insert before first launcher boot. <a href="02-sd-card.html">SD card</a>.</li>
+<li><strong>Flash one launcher.</strong> Not both. <a href="install.html">Install page</a>.
+<ul>
+<li><a href="https://loznoc.github.io/dualboot/">loznoc dual-boot</a> — best remote, 3 slots, themes</li>
+<li><a href="https://bmorcelli.github.io/Launcher/">bmorcelli Launcher</a> — catalog + OTA</li>
+</ul>
+</li>
+<li><strong>Put apps in slots.</strong> Copy .bin files to the card, then on the device: Install → file → slot → name. Suggested: 1 Bruce, 2 Flipper port (needs sdcard pack), 3 spare. <a href="09-firmware-index.html">Firmware index</a>.</li>
+<li><strong>Set the band.</strong> Before any transmit. EU: 433.92 or 868. US: 915. Australia: 433.92. Antenna must match. <a href="11-antennas.html">Antennas</a>.</li>
+<li><strong>Try the remote.</strong> <a href="remote.html">Remote page</a> — screen mirror and wheel control from your phone.</li>
+</ol>
+</section>
+
+<section class="dark">
+<h2>After setup</h2>
+<ul>
+<li><a href="14-software-extras.html">Software extras</a> — themes, packs, collections</li>
+<li><a href="15-finding-features.html">Finding features</a> — where things live in each firmware</li>
+<li><a href="05-updates.html">Updates</a> — how to update without wiping everything</li>
+<li><a href="06-troubleshooting.html">Troubleshooting</a> — black screen, no port, missing radio</li>
+</ul>
+</section>
+
+<p class="stamp">Own hardware only. Updated 26 October 2026.</p>
+</main>
+</body>
+</html>
